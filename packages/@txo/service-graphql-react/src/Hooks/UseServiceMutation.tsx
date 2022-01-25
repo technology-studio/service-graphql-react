@@ -27,7 +27,7 @@ import {
   MutationResult,
   useMutation,
 } from '@apollo/client'
-import { ErrorHandlerContext } from '@txo-peer-dep/service-react-error-handler'
+import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 import { operationPromiseProcessor } from '@txo/service-graphql'
 
 import { getName } from '../Api/OperationHelper'

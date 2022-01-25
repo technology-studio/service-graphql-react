@@ -28,7 +28,7 @@ import {
   useMemoObject,
 } from '@txo/hooks-react'
 import { serviceContext } from '@txo/service-react'
-import { ErrorHandlerContext } from '@txo-peer-dep/service-react-error-handler'
+import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 
 import { getName } from '../Api/OperationHelper'
 
