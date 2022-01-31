@@ -34,6 +34,7 @@
   "devDependencies": {
     "@apollo/client": "^3.5.7",
     "@txo-peer-dep/log": "^4.0.0",
+    "@txo-peer-dep/service-error-handler-react": "^1.0.0",
     "@txo-peer-dep/service-graphql": "^3.1.3",
     "@txo/hooks-react": "^2.3.2",
     "@txo/log-console": "^3.0.0",

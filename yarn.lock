@@ -705,6 +705,14 @@
   dependencies:
     "@txo/config-manager" "^3.0.1"
 
+"@txo-peer-dep/service-error-handler-react@^1.0.0":
+  version "1.0.0"
+  resolved "https://npm.technologystudio.sk/@txo-peer-dep%2fservice-error-handler-react/-/service-error-handler-react-1.0.0.tgz#a50ff3ee427ff99c497cc5b5313e38f89be1e60f"
+  integrity sha512-oVX9EvVi3Mm/MzJDx31k81qBpWI6RjoVTjhXPxue8o7f48KiuIvhlNRwM4sAyGccl3Q5q6STD/cA37ThYhzYyA==
+  dependencies:
+    "@txo/log" "^2.0.0"
+    "@txo/service-prop" "^2.0.2"
+
 "@txo-peer-dep/service-graphql@^3.1.3":
   version "3.1.3"
   resolved "https://npm.technologystudio.sk/@txo-peer-dep%2fservice-graphql/-/service-graphql-3.1.3.tgz#4d766871f098ac083576956911eba9ce89abfa46"
