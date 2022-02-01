@@ -27,6 +27,7 @@
     "prepare": "yarn build"
   },
   "dependencies": {
+    "@txo/service-react": "^4.1.0",
     "lodash.get": "^4.4.2",
     "type-fest": "^2.11.1"
   },
@@ -37,7 +38,6 @@
     "@txo/hooks-react": "^2.3.2",
     "@txo/service-graphql": "^4.1.3",
     "@txo/service-prop": "^2.0.2",
-    "@txo/service-react": "^4.1.0",
     "graphql": "^15.5.0"
   }
 }
