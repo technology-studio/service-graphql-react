@@ -4,7 +4,7 @@
  * @Copyright: Technology Studio
 **/
 
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { pathsToModuleNameMapper } = require('ts-jest')
 const { compilerOptions } = require('./tsconfig.json');
 
 const { defaults } = require('jest-config');
