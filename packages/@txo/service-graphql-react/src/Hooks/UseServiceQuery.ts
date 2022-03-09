@@ -38,9 +38,7 @@ const calculateContext = (query: DocumentNode, variables: Record<string, unknown
 
 export type QueryServiceProp<ATTRIBUTES, DATA, MAPPED_DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
   Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'clear' | 'options' | 'clearException'>
-  & {
-    query: QueryResult<DATA, ATTRIBUTES>,
-  }
+  & QueryResult<DATA, ATTRIBUTES>
 
 // TODO: find a better way to parse type of dataPath (from attribute)
 export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA, CALL_ATTRIBUTES, DATA_PATH extends string>(
@@ -77,10 +75,10 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     }
   }, [addServiceErrorException, context, exception, memoizedVariables, queryDocument, removeServiceErrorException])
 
-  return useMemo(() => ({
+  return useMemoObject({
+    ...query,
     data: get(query.data, dataPath),
     fetching: query.loading,
     exception,
-    query,
-  }), [dataPath, exception, query])
+  })
 }
