@@ -20,6 +20,7 @@ import {
   ServicePropCall,
 } from '@txo/service-prop'
 import { useMemoObject } from '@txo/hooks-react'
+import type { Typify } from '@txo/types'
 import {
   DocumentNode,
   MutationOptions,
@@ -79,10 +80,12 @@ export const useServiceMutation = <
       })
   }, [memoizedOptions, mutationDocument, removeServiceErrorException, mutate, addServiceErrorException])
 
+  const memoizedMutation = useMemoObject<Typify<MutationResult<DATA>>>(mutation)
+
   return useMemo(() => ({
-    data: mutation.data ?? null,
-    fetching: mutation.loading,
+    mutation: memoizedMutation,
+    data: memoizedMutation.data ?? null,
+    fetching: memoizedMutation.loading,
     call: wrappedCall as unknown as ServicePropCall<ATTRIBUTES, DATA, CALL_ATTRIBUTES>,
-    mutation,
-  }), [mutation, wrappedCall])
+  }), [memoizedMutation, wrappedCall])
 }

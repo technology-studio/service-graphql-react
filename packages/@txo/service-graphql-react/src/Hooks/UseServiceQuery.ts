@@ -31,6 +31,7 @@ import { serviceContext } from '@txo/service-react'
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 
 import { getName } from '../Api/OperationHelper'
+import { Typify } from '@txo/types'
 
 const calculateContext = (query: DocumentNode, variables: Record<string, unknown> | undefined): string => (
   serviceContext(getName(query), variables ?? {})
@@ -54,12 +55,13 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     removeServiceErrorException,
   } = useContext(ErrorHandlerContext)
   const memoizedVariables = useMemoObject(options?.variables)
+  const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
   ), [queryDocument, memoizedVariables])
   const exception = useMemo(() => {
     const operationName = getName(queryDocument)
-    const errorList = configManager.config.errorResponseTranslator(query, {
+    const errorList = configManager.config.errorResponseTranslator(memoizedQuery, {
       context,
       operationName,
     })
@@ -69,7 +71,7 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
       context,
     })
     return errorList.length === 0 ? null : exception
-  }, [context, query, queryDocument])
+  }, [context, memoizedQuery, queryDocument])
   useLayoutEffect(() => {
     exception && addServiceErrorException(exception)
     return () => {
@@ -78,9 +80,9 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
   }, [addServiceErrorException, context, exception, memoizedVariables, queryDocument, removeServiceErrorException])
 
   return useMemo(() => ({
-    data: get(query.data, dataPath),
-    fetching: query.loading,
+    query: memoizedQuery,
+    data: get(memoizedQuery.data, dataPath),
+    fetching: memoizedQuery.loading,
     exception,
-    query,
-  }), [dataPath, exception, query])
+  }), [memoizedQuery, exception, dataPath])
 }
