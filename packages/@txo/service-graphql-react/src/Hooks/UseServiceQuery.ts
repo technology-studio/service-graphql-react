@@ -31,6 +31,7 @@ import { serviceContext } from '@txo/service-react'
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 
 import { getName } from '../Api/OperationHelper'
+import { Typify } from '@txo/types'
 
 const calculateContext = (query: DocumentNode, variables: Record<string, unknown> | undefined): string => (
   serviceContext(getName(query), variables ?? {})
@@ -38,7 +39,9 @@ const calculateContext = (query: DocumentNode, variables: Record<string, unknown
 
 export type QueryServiceProp<ATTRIBUTES, DATA, MAPPED_DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
   Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'clear' | 'options' | 'clearException'>
-  & QueryResult<DATA, ATTRIBUTES>
+  & {
+    query: QueryResult<DATA, ATTRIBUTES>,
+  }
 
 // TODO: find a better way to parse type of dataPath (from attribute)
 export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA, CALL_ATTRIBUTES, DATA_PATH extends string>(
@@ -52,12 +55,13 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     removeServiceErrorException,
   } = useContext(ErrorHandlerContext)
   const memoizedVariables = useMemoObject(options?.variables)
+  const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
   ), [queryDocument, memoizedVariables])
   const exception = useMemo(() => {
     const operationName = getName(queryDocument)
-    const errorList = configManager.config.errorResponseTranslator(query, {
+    const errorList = configManager.config.errorResponseTranslator(memoizedQuery, {
       context,
       operationName,
     })
@@ -67,7 +71,7 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
       context,
     })
     return errorList.length === 0 ? null : exception
-  }, [context, query, queryDocument])
+  }, [context, memoizedQuery, queryDocument])
   useLayoutEffect(() => {
     exception && addServiceErrorException(exception)
     return () => {
@@ -75,10 +79,10 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     }
   }, [addServiceErrorException, context, exception, memoizedVariables, queryDocument, removeServiceErrorException])
 
-  return useMemoObject({
-    ...query,
-    data: get(query.data, dataPath),
-    fetching: query.loading,
+  return useMemo(() => ({
+    query: memoizedQuery,
+    data: get(memoizedQuery.data, dataPath),
+    fetching: memoizedQuery.loading,
     exception,
-  })
+  }), [memoizedQuery, exception, dataPath])
 }

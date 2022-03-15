@@ -7,6 +7,7 @@
 import {
   useCallback,
   useContext,
+  useMemo,
   useRef,
 } from 'react'
 import {
@@ -19,6 +20,7 @@ import {
   ServicePropCall,
 } from '@txo/service-prop'
 import { useMemoObject } from '@txo/hooks-react'
+import type { Typify } from '@txo/types'
 import {
   DocumentNode,
   MutationOptions,
@@ -37,7 +39,9 @@ const calculateContext = (mutation: DocumentNode, variables?: Record<string, unk
 
 export type MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
   Omit<ServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES>, 'clear' | 'options' | 'clearException' | 'exception'>
-  & MutationResult<DATA>
+  & {
+    mutation: MutationResult<DATA>,
+  }
 
 export const useServiceMutation = <
   ATTRIBUTES extends Record<string, unknown>,
@@ -76,10 +80,12 @@ export const useServiceMutation = <
       })
   }, [memoizedOptions, mutationDocument, removeServiceErrorException, mutate, addServiceErrorException])
 
-  return useMemoObject({
-    ...mutation,
-    data: mutation.data ?? null,
-    fetching: mutation.loading,
+  const memoizedMutation = useMemoObject<Typify<MutationResult<DATA>>>(mutation)
+
+  return useMemo(() => ({
+    mutation: memoizedMutation,
+    data: memoizedMutation.data ?? null,
+    fetching: memoizedMutation.loading,
     call: wrappedCall as unknown as ServicePropCall<ATTRIBUTES, DATA, CALL_ATTRIBUTES>,
-  })
+  }), [memoizedMutation, wrappedCall])
 }
