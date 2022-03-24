@@ -43,18 +43,26 @@ export type QueryServiceProp<ATTRIBUTES, DATA, MAPPED_DATA, CALL_ATTRIBUTES exte
     query: QueryResult<DATA, ATTRIBUTES>,
   }
 
+type QueryOptions<DATA, ATTRIBUTES, DATA_PATH extends string> = {
+  options: QueryHookOptions<DATA, ATTRIBUTES>,
+  dataPath: DATA_PATH,
+}
+
 // TODO: find a better way to parse type of dataPath (from attribute)
 export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA, CALL_ATTRIBUTES, DATA_PATH extends string>(
   queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
-  options: QueryHookOptions<DATA, ATTRIBUTES> | undefined,
-  dataPath: DATA_PATH,
+  options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
 ): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
-  const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, options)
+  const {
+    dataPath,
+    options: queryOptions,
+  } = options
+  const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
   const {
     addServiceErrorException,
     removeServiceErrorException,
   } = useContext(ErrorHandlerContext)
-  const memoizedVariables = useMemoObject(options?.variables)
+  const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
@@ -64,6 +72,7 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     const errorList = configManager.config.errorResponseTranslator(memoizedQuery, {
       context,
       operationName,
+      path: dataPath,
     })
     const exception = new ServiceErrorException({
       serviceErrorList: errorList,

@@ -5,5 +5,10 @@
 **/
 
 export { getName } from './Api/OperationHelper'
+export * from './Api/ErrorMapHelper'
 export { useServiceMutation } from './Hooks/UseServiceMutation'
-export { useServiceQuery } from './Hooks/UseServiceQuery'
+export {
+  useServiceQuery,
+  QueryServiceProp,
+} from './Hooks/UseServiceQuery'
+export * from './Model/Types'
