@@ -16,21 +16,17 @@ import {
   VALIDATION_ERROR,
 } from '../Model/Types'
 
-export const ignoreError = (): ErrorMapper => () => (undefined)
+export const ignoreError = (): ErrorMapper => () => undefined
 export const validationError = (message?: string): ErrorMapper => ({
   error,
 }) => {
   const nextError: ServiceError = {
     ...error,
     message: message ?? error.message,
-    meta: error.meta
-      ? {
-          ...error.meta,
-          type: VALIDATION_ERROR,
-        }
-      : {
-          type: VALIDATION_ERROR,
-        },
+    meta: {
+      ...error.meta,
+      type: VALIDATION_ERROR,
+    },
   }
 
   return nextError
