@@ -72,7 +72,6 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     const errorList = configManager.config.errorResponseTranslator(memoizedQuery, {
       context,
       operationName,
-      path: dataPath,
     })
     const exception = new ServiceErrorException({
       serviceErrorList: errorList,
