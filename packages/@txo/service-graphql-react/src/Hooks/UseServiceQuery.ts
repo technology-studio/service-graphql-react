@@ -27,9 +27,9 @@ import { configManager } from '@txo-peer-dep/service-graphql'
 import {
   useMemoObject,
 } from '@txo/hooks-react'
-import { serviceContext } from '@txo/service-react'
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 
+import { serviceContext } from '../Api/ContextHelper'
 import { getName } from '../Api/OperationHelper'
 import { Typify } from '@txo/types'
 

@@ -11,9 +11,6 @@ import {
   useRef,
 } from 'react'
 import {
-  serviceContext,
-} from '@txo/service-react'
-import {
   CallAttributes,
   ServiceProp,
   ServiceErrorException,
@@ -31,6 +28,7 @@ import {
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 import { operationPromiseProcessor } from '@txo/service-graphql'
 
+import { serviceContext } from '../Api/ContextHelper'
 import { getName } from '../Api/OperationHelper'
 import { ErrorMap } from '../Model/Types'
 import { applyErrorMap } from '../Api/ErrorMapHelper'
