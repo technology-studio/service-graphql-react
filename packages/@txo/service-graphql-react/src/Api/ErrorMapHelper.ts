@@ -18,9 +18,9 @@ import {
   VALIDATION_ERROR,
 } from '../Model/Types'
 
-const normaliseErrorMap = (errorMap: ErrorMap | ErrorMapper): ErrorMap | ErrorMapper => {
+const normaliseErrorMap = (errorMap: ErrorMap): ErrorMap => {
   if (isObject(errorMap)) {
-    return Object.keys(errorMap).reduce((normalisedErrorMap: ErrorMap, key) => {
+    return Object.keys(errorMap).reduce((normalisedErrorMap: { [key: string]: ErrorMap }, key) => {
       set(normalisedErrorMap, key, normaliseErrorMap(errorMap[key]))
       return normalisedErrorMap
     }, {})
@@ -46,7 +46,7 @@ export const validationError = (message?: string): ErrorMapper => ({
 
 export const applyErrorMap = (
   serviceErrorException: ServiceErrorException,
-  errorMap: ErrorMap | ErrorMapper,
+  errorMap: ErrorMap,
   onFieldErrors?: (fieldErrors: Record<string, Record<string, string>>) => void,
 ): ServiceError[] => {
   const normalisedErrorMap = normaliseErrorMap(errorMap)

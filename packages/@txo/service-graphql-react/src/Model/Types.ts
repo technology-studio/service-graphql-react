@@ -12,6 +12,6 @@ export type ErrorMapper = ((options: {
   path: string,
 }) => ServiceError | undefined) | undefined
 
-export type ErrorMap = { [key: string]: ErrorMapper | ErrorMap }
+export type ErrorMap = { [key: string]: ErrorMap } | ErrorMapper
 
 export const VALIDATION_ERROR = 'VALIDATION_ERROR'
