@@ -8,7 +8,6 @@ import {
   ServiceError,
   ServiceErrorException,
 } from '@txo/service-prop'
-import { isObject } from '@txo/functional'
 import get from 'lodash.get'
 
 import {
@@ -17,28 +16,7 @@ import {
   VALIDATION_ERROR,
 } from '../Model/Types'
 
-const STATUS = 'status'
-
-const getFieldError = (fieldErrors: Record<string, Record<string, string>>, name: string): Record<string, string> => {
-  let fieldError = fieldErrors[name]
-  if (!fieldError) {
-    fieldError = {}
-    fieldErrors[name] = fieldError
-  }
-  return fieldError
-}
-
 export const ignoreError = (): ErrorMapper => () => (undefined)
-export const formError = (message?: string, fieldName: string = STATUS): ErrorMapper => ({
-  error,
-  fieldErrors,
-  path,
-}) => {
-  if (fieldErrors && isObject(fieldErrors)) {
-    getFieldError(fieldErrors, fieldName)[path] = message ?? error.message
-  }
-  return undefined
-}
 export const validationError = (message?: string): ErrorMapper => ({
   error,
 }) => {
