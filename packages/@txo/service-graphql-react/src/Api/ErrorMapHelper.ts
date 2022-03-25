@@ -76,7 +76,6 @@ export const applyErrorMap = (
 
       return nextServiceErrorList
     }, [])
-    .filter(serviceError => serviceError)
 
   if (onFieldErrors && Object.keys(fieldErrors).length > 0) {
     onFieldErrors(fieldErrors)
