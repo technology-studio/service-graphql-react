@@ -46,7 +46,7 @@ export type MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES extends CallAt
   }
 
 type MutationOptions<DATA, ATTRIBUTES> = {
-  options: Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>,
+  options?: Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>,
   errorMap?: ErrorMap,
 }
 
