@@ -20,14 +20,20 @@ export const ignoreError = (): ErrorMapper => () => (undefined)
 export const validationError = (message?: string): ErrorMapper => ({
   error,
 }) => {
-  if (message) {
-    error.message = message
+  const nextError: ServiceError = {
+    ...error,
+    message: message ?? error.message,
+    meta: error.meta
+      ? {
+          ...error.meta,
+          type: VALIDATION_ERROR,
+        }
+      : {
+          type: VALIDATION_ERROR,
+        },
   }
-  error.meta
-    ? error.meta.type = VALIDATION_ERROR
-    : error.meta = { type: VALIDATION_ERROR }
 
-  return error
+  return nextError
 }
 
 export const applyErrorMap = (
@@ -51,8 +57,8 @@ export const applyErrorMap = (
           fieldErrors,
           path,
         })
-        modified = true
-        if (nextServiceError) {
+        if (nextServiceError && nextServiceError !== serviceError) {
+          modified = true
           nextServiceErrorList.push(nextServiceError)
         }
       }
@@ -61,7 +67,7 @@ export const applyErrorMap = (
     }, [])
     .filter(serviceError => serviceError)
 
-  if (onFieldErrors) {
+  if (onFieldErrors && Object.keys(fieldErrors).length > 0) {
     onFieldErrors(fieldErrors)
   }
 
