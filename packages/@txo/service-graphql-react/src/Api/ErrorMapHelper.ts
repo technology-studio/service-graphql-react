@@ -66,10 +66,12 @@ export const applyErrorMap = (
           fieldErrors,
           path,
         })
-        if (nextServiceError && nextServiceError !== serviceError) {
+        if (nextServiceError !== serviceError) {
           modified = true
-          nextServiceErrorList.push(nextServiceError)
         }
+        nextServiceError && nextServiceErrorList.push(nextServiceError)
+      } else {
+        nextServiceErrorList.push(serviceError)
       }
 
       return nextServiceErrorList
