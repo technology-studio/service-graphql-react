@@ -8,13 +8,25 @@ import {
   ServiceError,
   ServiceErrorException,
 } from '@txo/service-prop'
+import { isObject } from '@txo/functional'
 import get from 'lodash.get'
+import set from 'lodash.set'
 
 import {
   ErrorMap,
   ErrorMapper,
   VALIDATION_ERROR,
 } from '../Model/Types'
+
+const normaliseErrorMap = (errorMap: ErrorMap | ErrorMapper): ErrorMap | ErrorMapper => {
+  if (isObject(errorMap)) {
+    return Object.keys(errorMap).reduce((normalisedErrorMap: ErrorMap, key) => {
+      set(normalisedErrorMap, key, normaliseErrorMap(errorMap[key]))
+      return normalisedErrorMap
+    }, {})
+  }
+  return errorMap
+}
 
 export const ignoreError = (): ErrorMapper => () => undefined
 export const validationError = (message?: string): ErrorMapper => ({
@@ -34,9 +46,10 @@ export const validationError = (message?: string): ErrorMapper => ({
 
 export const applyErrorMap = (
   serviceErrorException: ServiceErrorException,
-  normalisedErrorMap: ErrorMap | ErrorMapper,
+  errorMap: ErrorMap | ErrorMapper,
   onFieldErrors?: (fieldErrors: Record<string, Record<string, string>>) => void,
 ): ServiceError[] => {
+  const normalisedErrorMap = normaliseErrorMap(errorMap)
   let modified = false
   const fieldErrors = {}
   const nextServiceErrorList = serviceErrorException.serviceErrorList

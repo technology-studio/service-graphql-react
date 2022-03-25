@@ -33,6 +33,7 @@
     "@txo/service-react": "^4.1.0",
     "@txo/types": "^1.3.0",
     "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
     "type-fest": "^2.12.1"
   },
   "peerDependencies": {
