@@ -23,7 +23,7 @@ import { useMemoObject } from '@txo/hooks-react'
 import type { Typify } from '@txo/types'
 import {
   DocumentNode,
-  MutationOptions,
+  MutationOptions as ApolloMutationOptions,
   TypedDocumentNode,
   MutationResult,
   useMutation,
@@ -32,6 +32,8 @@ import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 import { operationPromiseProcessor } from '@txo/service-graphql'
 
 import { getName } from '../Api/OperationHelper'
+import { ErrorMap } from '../Model/Types'
+import { applyErrorMap } from '../Api/ErrorMapHelper'
 
 const calculateContext = (mutation: DocumentNode, variables?: Record<string, unknown>): string => (
   serviceContext(getName(mutation), variables ?? {})
@@ -43,24 +45,33 @@ export type MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES extends CallAt
     mutation: MutationResult<DATA>,
   }
 
+type MutationOptions<DATA, ATTRIBUTES> = {
+  options?: Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>,
+  errorMap?: ErrorMap,
+}
+
 export const useServiceMutation = <
   ATTRIBUTES extends Record<string, unknown>,
   DATA,
   CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>,
 >(
     mutationDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
-    options?: Omit<MutationOptions<DATA, ATTRIBUTES>, 'mutation'>,
+    options?: MutationOptions<DATA, ATTRIBUTES>,
   ): MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES> => {
+  const {
+    errorMap,
+    options: mutationOptions,
+  } = options ?? {}
   const exceptionRef = useRef<ServiceErrorException | null>(null)
   const [mutate, mutation] = useMutation<
   DATA,
   ATTRIBUTES
-  >(mutationDocument, options)
+  >(mutationDocument, mutationOptions)
   const {
     addServiceErrorException,
     removeServiceErrorException,
   } = useContext(ErrorHandlerContext)
-  const memoizedOptions = useMemoObject(options)
+  const memoizedOptions = useMemoObject(mutationOptions as Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>)
   const wrappedCall = useCallback(async (
     variables: ATTRIBUTES,
   ) => {
@@ -74,6 +85,9 @@ export const useServiceMutation = <
       context,
     })
       .catch(async (serviceErrorException: ServiceErrorException) => {
+        if (errorMap) {
+          applyErrorMap(serviceErrorException, errorMap)
+        }
         addServiceErrorException(serviceErrorException)
         exceptionRef.current = serviceErrorException
         throw serviceErrorException
