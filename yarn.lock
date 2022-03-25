@@ -797,13 +797,13 @@
     constant-case "^3.0.4"
     redux "^4.0.1"
 
-"@txo/service-graphql@^4.1.3":
-  version "4.1.3"
-  resolved "https://npm.technologystudio.sk/@txo%2fservice-graphql/-/service-graphql-4.1.3.tgz#348494cdab2f99a3c2ea37314a3ef6b6fdd22f0a"
-  integrity sha512-gtdxZxlRuePkC8V/5gjeHmQejDW40qdsr3VOtx33HEBAtoiYo/83cBfnkQF2/pKtIF7rWcrCVgk9xORbZmH5jQ==
+"@txo/service-graphql@^4.2.0":
+  version "4.2.0"
+  resolved "https://npm.technologystudio.sk/@txo%2fservice-graphql/-/service-graphql-4.2.0.tgz#fe1ade3885d764e75fca83f70d6b37b8c9754ad7"
+  integrity sha512-musXTlzntnhkHRitOgWMjslv68II2ttrKkpzs0eQnJftt0Dwk4IcaOEh6kFF7TsR7LUbi3O7vQ04D7BsmV2j1w==
   dependencies:
     "@txo/log" "^2.0.0"
-    "@txo/service-prop" "^2.0.2"
+    "@txo/service-prop" "^2.1.0"
     lodash.get "^4.4.2"
 
 "@txo/service-prop@^2.0.2", "@txo/service-prop@^2.1.0":

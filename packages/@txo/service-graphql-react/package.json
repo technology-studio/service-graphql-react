@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@txo/hooks-react": "^2.3.2",
-    "@txo/service-graphql": "^4.1.3",
+    "@txo/service-graphql": "^4.2.0",
     "@txo/service-prop": "^2.1.0",
     "@txo/service-react": "^4.1.0",
     "@txo/types": "^1.3.0",
