@@ -73,9 +73,6 @@ export const useServiceMutation = <
   DATA,
   ATTRIBUTES
   >(mutationDocument, mutationOptions)
-  const nextMutate = useMemo(() => {
-    return mutateFactory?.(mutate) ?? mutate
-  }, [mutateFactory, mutate])
   const {
     addServiceErrorException,
     removeServiceErrorException,
@@ -91,6 +88,15 @@ export const useServiceMutation = <
     exceptionRef.current && removeServiceErrorException(context)
     exceptionRef.current = null
     const operationName = getName(mutationDocument)
+    const mutateWithErrorProcessor: typeof mutate = useCallback(async (options) => (
+      operationPromiseProcessor(mutate(options), {
+        operationName,
+        context,
+      })
+    ), [])
+    const nextMutate = useMemo(() => {
+      return mutateFactory?.(mutateWithErrorProcessor) ?? mutateWithErrorProcessor
+    }, [mutateFactory, mutateWithErrorProcessor])
     return operationPromiseProcessor(nextMutate(attributes), {
       operationName,
       context,
@@ -103,7 +109,7 @@ export const useServiceMutation = <
         exceptionRef.current = serviceErrorException
         throw serviceErrorException
       })
-  }, [memoizedOptions, mutationDocument, removeServiceErrorException, nextMutate, addServiceErrorException])
+  }, [memoizedOptions, mutationDocument, removeServiceErrorException, addServiceErrorException])
 
   const memoizedMutation = useMemoObject<Typify<MutationResult<DATA>>>(mutation)
 
