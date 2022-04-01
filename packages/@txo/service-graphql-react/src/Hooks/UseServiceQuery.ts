@@ -44,7 +44,7 @@ export type QueryServiceProp<ATTRIBUTES, DATA, MAPPED_DATA, CALL_ATTRIBUTES exte
   }
 
 type QueryOptions<DATA, ATTRIBUTES, DATA_PATH extends string> = {
-  options: QueryHookOptions<DATA, ATTRIBUTES>,
+  options?: QueryHookOptions<DATA, ATTRIBUTES>,
   dataPath: DATA_PATH,
 }
 
