@@ -24,7 +24,7 @@ import {
   TypedDocumentNode,
   MutationResult,
   useMutation,
-  MutationFunctionOptions,
+  MutationFunctionOptions as MutateFunctionOptions,
   FetchResult,
 } from '@apollo/client'
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
@@ -45,7 +45,7 @@ export type MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES extends CallAt
     mutation: MutationResult<DATA>,
   }
 
-export type MutateFunction<DATA, ATTRIBUTES> = (options?: MutationFunctionOptions<DATA, ATTRIBUTES>) => Promise<FetchResult<DATA>>
+export type MutateFunction<DATA, ATTRIBUTES> = (options?: MutateFunctionOptions<DATA, ATTRIBUTES>) => Promise<FetchResult<DATA>>
 
 export type MutationOptions<DATA, ATTRIBUTES> = {
   onFieldErrors?: (fieldErrors: Record<string, Record<string, string>>) => void,
