@@ -88,15 +88,13 @@ export const useServiceMutation = <
     exceptionRef.current && removeServiceErrorException(context)
     exceptionRef.current = null
     const operationName = getName(mutationDocument)
-    const mutateWithErrorProcessor: typeof mutate = useCallback(async (options) => (
+    const mutateWithErrorProcessor: typeof mutate = async (options) => (
       operationPromiseProcessor(mutate(options), {
         operationName,
         context,
       })
-    ), [])
-    const nextMutate = useMemo(() => {
-      return mutateFactory?.(mutateWithErrorProcessor) ?? mutateWithErrorProcessor
-    }, [mutateFactory, mutateWithErrorProcessor])
+    )
+    const nextMutate = mutateFactory?.(mutateWithErrorProcessor) ?? mutateWithErrorProcessor
     return operationPromiseProcessor(nextMutate(attributes), {
       operationName,
       context,
