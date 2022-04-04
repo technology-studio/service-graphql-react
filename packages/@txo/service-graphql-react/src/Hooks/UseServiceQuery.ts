@@ -44,7 +44,7 @@ export type QueryServiceProp<ATTRIBUTES, DATA, MAPPED_DATA, CALL_ATTRIBUTES exte
   }
 
 type QueryOptions<DATA, ATTRIBUTES, DATA_PATH extends string> = {
-  options: QueryHookOptions<DATA, ATTRIBUTES>,
+  options?: QueryHookOptions<DATA, ATTRIBUTES>,
   dataPath: DATA_PATH,
 }
 
@@ -69,16 +69,19 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
   ), [queryDocument, memoizedVariables])
   const exception = useMemo(() => {
     const operationName = getName(queryDocument)
-    const errorList = configManager.config.errorResponseTranslator(memoizedQuery, {
-      context,
-      operationName,
-    })
-    const exception = new ServiceErrorException({
-      serviceErrorList: errorList,
-      serviceName: operationName,
-      context,
-    })
-    return errorList.length === 0 ? null : exception
+    if (memoizedQuery.error) {
+      const errorList = configManager.config.errorResponseTranslator(memoizedQuery.error, {
+        context,
+        operationName,
+      })
+      const exception = new ServiceErrorException({
+        serviceErrorList: errorList,
+        serviceName: operationName,
+        context,
+      })
+      return exception
+    }
+    return null
   }, [context, memoizedQuery, queryDocument])
   useLayoutEffect(() => {
     exception && addServiceErrorException(exception)

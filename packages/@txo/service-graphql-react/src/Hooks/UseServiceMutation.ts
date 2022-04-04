@@ -24,6 +24,8 @@ import {
   TypedDocumentNode,
   MutationResult,
   useMutation,
+  MutationFunctionOptions as MutateFunctionOptions,
+  FetchResult,
 } from '@apollo/client'
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 import { operationPromiseProcessor } from '@txo/service-graphql'
@@ -43,22 +45,28 @@ export type MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES extends CallAt
     mutation: MutationResult<DATA>,
   }
 
-type MutationOptions<DATA, ATTRIBUTES> = {
+export type MutateFunction<DATA, ATTRIBUTES> = (options?: MutateFunctionOptions<DATA, ATTRIBUTES>) => Promise<FetchResult<DATA>>
+
+export type MutationOptions<DATA, ATTRIBUTES> = {
+  onFieldErrors?: (fieldErrors: Record<string, Record<string, string>>) => void,
   options?: Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>,
   errorMap?: ErrorMap,
+  mutateFactory?: (mutate: MutateFunction<DATA, ATTRIBUTES>) => MutateFunction<DATA, ATTRIBUTES>,
 }
 
 export const useServiceMutation = <
   ATTRIBUTES extends Record<string, unknown>,
   DATA,
   CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>,
->(
+  >(
     mutationDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
     options?: MutationOptions<DATA, ATTRIBUTES>,
   ): MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES> => {
   const {
+    onFieldErrors: defaultOnFieldErrors,
     errorMap,
     options: mutationOptions,
+    mutateFactory,
   } = options ?? {}
   const exceptionRef = useRef<ServiceErrorException | null>(null)
   const [mutate, mutation] = useMutation<
@@ -72,25 +80,34 @@ export const useServiceMutation = <
   const memoizedOptions = useMemoObject(mutationOptions as Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>)
   const wrappedCall = useCallback(async (
     variables: ATTRIBUTES,
+    callAttributes: CALL_ATTRIBUTES,
   ) => {
     const attributes = { variables, mutation: mutationDocument, ...memoizedOptions }
+    const onFieldErrors = callAttributes?.onFieldErrors ?? defaultOnFieldErrors
     const context = calculateContext(mutationDocument, variables)
     exceptionRef.current && removeServiceErrorException(context)
     exceptionRef.current = null
     const operationName = getName(mutationDocument)
-    return operationPromiseProcessor(mutate(attributes), {
+    const mutateWithErrorProcessor: typeof mutate = async (options) => (
+      operationPromiseProcessor(mutate(options), {
+        operationName,
+        context,
+      })
+    )
+    const nextMutate = mutateFactory?.(mutateWithErrorProcessor) ?? mutateWithErrorProcessor
+    return operationPromiseProcessor(nextMutate(attributes), {
       operationName,
       context,
     })
       .catch(async (serviceErrorException: ServiceErrorException) => {
         if (errorMap) {
-          applyErrorMap(serviceErrorException, errorMap)
+          applyErrorMap(serviceErrorException, errorMap, onFieldErrors)
         }
         addServiceErrorException(serviceErrorException)
         exceptionRef.current = serviceErrorException
         throw serviceErrorException
       })
-  }, [memoizedOptions, mutationDocument, removeServiceErrorException, mutate, addServiceErrorException])
+  }, [memoizedOptions, mutationDocument, removeServiceErrorException, addServiceErrorException])
 
   const memoizedMutation = useMemoObject<Typify<MutationResult<DATA>>>(mutation)
 
