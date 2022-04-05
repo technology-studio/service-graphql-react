@@ -101,7 +101,11 @@ export const useServiceMutation = <
     })
       .catch(async (serviceErrorException: ServiceErrorException) => {
         if (errorMap) {
-          applyErrorMap(serviceErrorException, errorMap, onFieldErrors)
+          serviceErrorException.serviceErrorList = applyErrorMap(
+            serviceErrorException.serviceErrorList,
+            errorMap,
+            onFieldErrors,
+          )
         }
         addServiceErrorException(serviceErrorException)
         exceptionRef.current = serviceErrorException
