@@ -6,7 +6,6 @@
 
 import {
   ServiceError,
-  ServiceErrorException,
 } from '@txo/service-prop'
 import { isObject } from '@txo/functional'
 import get from 'lodash.get'
@@ -45,14 +44,14 @@ export const validationError = (message?: string): ErrorMapper => ({
 }
 
 export const applyErrorMap = (
-  serviceErrorException: ServiceErrorException,
+  serviceErrorList: ServiceError[],
   errorMap: ErrorMap,
   onFieldErrors?: (fieldErrors: Record<string, Record<string, string>>) => void,
 ): ServiceError[] => {
   const normalisedErrorMap = normaliseErrorMap(errorMap)
   let modified = false
   const fieldErrors = {}
-  const nextServiceErrorList = serviceErrorException.serviceErrorList
+  const nextServiceErrorList = serviceErrorList
     .reduce<ServiceError[]>(
     (nextServiceErrorList, serviceError) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -81,9 +80,5 @@ export const applyErrorMap = (
     onFieldErrors(fieldErrors)
   }
 
-  if (modified) {
-    serviceErrorException.serviceErrorList = nextServiceErrorList
-    return nextServiceErrorList
-  }
-  return serviceErrorException.serviceErrorList
+  return modified ? nextServiceErrorList : serviceErrorList
 }
