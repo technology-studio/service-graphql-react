@@ -42,18 +42,22 @@ export const validationError = (message?: string): ErrorMapper => ({
   return nextError
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getWithWildcardFallback = (object: ErrorMap, path: string, defaultValue?: any): ErrorMapper => {
-  if (object === undefined) {
-    return defaultValue
+const getWithWildcardFallback = (errorMap: ErrorMap, path: string): ErrorMapper | undefined => {
+  if (errorMap === undefined) {
+    return undefined
   }
-  const pathParts = path.split('.')
-  const currentPath = pathParts.shift()
-  const keys = Object.keys(object)
-  const pathToGet = currentPath && keys.includes(currentPath) ? currentPath : '*'
-  return isObject(object)
-    ? getWithWildcardFallback(object[pathToGet], pathParts.join('.'), defaultValue)
-    : object
+  if (path) {
+    if (isObject(errorMap)) {
+      const pathList = path.split('.')
+      const currentPath = pathList.shift()
+      const keyList = Object.keys(errorMap)
+      const currentKey = currentPath && keyList.includes(currentPath) ? currentPath : '*'
+      return getWithWildcardFallback(errorMap[currentKey], pathList.join('.'))
+    } else {
+      return undefined
+    }
+  }
+  return typeof errorMap === 'function' ? errorMap : undefined
 }
 
 export const applyErrorMap = (
@@ -70,7 +74,7 @@ export const applyErrorMap = (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const graphQlError: any = serviceError.data
       const path = [...(graphQlError?.path ?? []), serviceError.key].join('.')
-      const errorMapper = getWithWildcardFallback(normalisedErrorMap, path, undefined)
+      const errorMapper = getWithWildcardFallback(normalisedErrorMap, path)
 
       if (errorMapper) {
         const nextServiceError = errorMapper({
