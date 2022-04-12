@@ -8,7 +8,6 @@ import {
   ServiceError,
 } from '@txo/service-prop'
 import { isObject } from '@txo/functional'
-import get from 'lodash.get'
 import set from 'lodash.set'
 
 import {
@@ -43,6 +42,24 @@ export const validationError = (message?: string): ErrorMapper => ({
   return nextError
 }
 
+const getWithWildcardFallback = (errorMap: ErrorMap, path: string): ErrorMapper | undefined => {
+  if (errorMap === undefined) {
+    return undefined
+  }
+  if (path) {
+    if (isObject(errorMap)) {
+      const pathList = path.split('.')
+      const currentPath = pathList.shift()
+      const keyList = Object.keys(errorMap)
+      const currentKey = currentPath && keyList.includes(currentPath) ? currentPath : '*'
+      return getWithWildcardFallback(errorMap[currentKey], pathList.join('.'))
+    } else {
+      return undefined
+    }
+  }
+  return typeof errorMap === 'function' ? errorMap : undefined
+}
+
 export const applyErrorMap = (
   serviceErrorList: ServiceError[],
   errorMap: ErrorMap,
@@ -57,7 +74,7 @@ export const applyErrorMap = (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const graphQlError: any = serviceError.data
       const path = [...(graphQlError?.path ?? []), serviceError.key].join('.')
-      const errorMapper = get(normalisedErrorMap, path, undefined) as ErrorMapper
+      const errorMapper = getWithWildcardFallback(normalisedErrorMap, path)
 
       if (errorMapper) {
         const nextServiceError = errorMapper({
