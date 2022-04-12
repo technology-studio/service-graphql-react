@@ -5,6 +5,7 @@
 **/
 
 import {
+  DependencyList,
   useCallback,
   useContext,
   useMemo,
@@ -52,6 +53,8 @@ export type MutationOptions<DATA, ATTRIBUTES> = {
   options?: Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>,
   errorMap?: ErrorMap,
   mutateFactory?: (mutate: MutateFunction<DATA, ATTRIBUTES>) => MutateFunction<DATA, ATTRIBUTES>,
+  onFieldErrorsDependencyList?: DependencyList,
+  errorMapDependencyList?: DependencyList,
 }
 
 export const useServiceMutation = <
@@ -64,11 +67,23 @@ export const useServiceMutation = <
   ): MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES> => {
   const {
     onFieldErrors: defaultOnFieldErrors,
+    onFieldErrorsDependencyList,
     errorMap,
+    errorMapDependencyList,
     options: mutationOptions,
     mutateFactory,
   } = options ?? {}
   const exceptionRef = useRef<ServiceErrorException | null>(null)
+  const memoizedErrorMap = useMemo(
+    () => errorMap,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    errorMapDependencyList ?? [],
+  )
+  const memoizedDefaultOnFieldErrors = useMemo(
+    () => defaultOnFieldErrors,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    onFieldErrorsDependencyList ?? [],
+  )
   const [mutate, mutation] = useMutation<
   DATA,
   ATTRIBUTES
@@ -83,7 +98,7 @@ export const useServiceMutation = <
     callAttributes: CALL_ATTRIBUTES,
   ) => {
     const attributes = { variables, mutation: mutationDocument, ...memoizedOptions }
-    const onFieldErrors = callAttributes?.onFieldErrors ?? defaultOnFieldErrors
+    const onFieldErrors = callAttributes?.onFieldErrors ?? memoizedDefaultOnFieldErrors
     const context = calculateContext(mutationDocument, variables)
     exceptionRef.current && removeServiceErrorException(context)
     exceptionRef.current = null
@@ -100,10 +115,10 @@ export const useServiceMutation = <
       context,
     })
       .catch(async (serviceErrorException: ServiceErrorException) => {
-        if (errorMap) {
+        if (memoizedErrorMap) {
           serviceErrorException.serviceErrorList = applyErrorMap(
             serviceErrorException.serviceErrorList,
-            errorMap,
+            memoizedErrorMap,
             onFieldErrors,
           )
         }
@@ -111,7 +126,7 @@ export const useServiceMutation = <
         exceptionRef.current = serviceErrorException
         throw serviceErrorException
       })
-  }, [memoizedOptions, mutationDocument, removeServiceErrorException, addServiceErrorException])
+  }, [mutationDocument, memoizedOptions, memoizedDefaultOnFieldErrors, removeServiceErrorException, mutateFactory, mutate, memoizedErrorMap, addServiceErrorException])
 
   const memoizedMutation = useMemoObject<Typify<MutationResult<DATA>>>(mutation)
 
