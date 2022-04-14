@@ -9,5 +9,11 @@
       "./tsconfig.json",
       "./packages/**/tsconfig.json"
     ]
+  },
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/exhaustive-deps": "error"
   }
 }
