@@ -8,6 +8,7 @@ import {
   useContext,
   useLayoutEffect,
   useMemo,
+  useRef,
 } from 'react'
 import {
   DocumentNode,
@@ -20,6 +21,7 @@ import get from 'lodash.get'
 import type { Get } from 'type-fest'
 import {
   CallAttributes,
+  ServiceError,
   ServiceErrorException,
   ServiceProp,
 } from '@txo/service-prop'
@@ -48,6 +50,16 @@ type QueryOptions<DATA, ATTRIBUTES, DATA_PATH extends string> = {
   dataPath: DATA_PATH,
 }
 
+const isServiceErrorListEqual = (a: ServiceError[], b: ServiceError[]): boolean => {
+  if (a.length !== b.length) {
+    return false
+  }
+  if (a.every((error, index) => (b[index].key === error.key) && (b[index].message === error.message))) {
+    return true
+  }
+  return false
+}
+
 // TODO: find a better way to parse type of dataPath (from attribute)
 export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA, CALL_ATTRIBUTES, DATA_PATH extends string>(
   queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
@@ -58,6 +70,7 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     options: queryOptions,
   } = options
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
+  const shownExceptionListRef = useRef<(ServiceErrorException)[]>([])
   const {
     addServiceErrorException,
     removeServiceErrorException,
@@ -84,7 +97,12 @@ export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA
     return null
   }, [context, memoizedQuery, queryDocument])
   useLayoutEffect(() => {
-    exception && addServiceErrorException(exception)
+    if (exception && !shownExceptionListRef.current.find(shownException => (
+      isServiceErrorListEqual(shownException.serviceErrorList, exception.serviceErrorList)
+    ))) {
+      addServiceErrorException(exception)
+      shownExceptionListRef.current.push(exception)
+    }
     return () => {
       exception && removeServiceErrorException(context)
     }
