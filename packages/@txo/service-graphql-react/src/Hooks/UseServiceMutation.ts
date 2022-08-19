@@ -15,7 +15,6 @@ import {
   CallAttributes,
   ServiceProp,
   ServiceErrorException,
-  ServicePropCall,
 } from '@txo/service-prop'
 import { useMemoObject } from '@txo/hooks-react'
 import type { Typify } from '@txo/types'
@@ -41,7 +40,7 @@ const calculateContext = (mutation: DocumentNode, variables?: Record<string, unk
 )
 
 export type MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
-  Omit<ServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES>, 'clear' | 'options' | 'clearException' | 'exception'>
+  Omit<ServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES, FetchResult<DATA>>, 'clear' | 'options' | 'clearException' | 'exception'>
   & {
     mutation: MutationResult<DATA>,
   }
@@ -95,7 +94,7 @@ export const useServiceMutation = <
   const memoizedOptions = useMemoObject(mutationOptions as Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>)
   const wrappedCall = useCallback(async (
     variables: ATTRIBUTES,
-    callAttributes: CALL_ATTRIBUTES,
+    callAttributes?: CALL_ATTRIBUTES,
   ) => {
     const attributes = { variables, mutation: mutationDocument, ...memoizedOptions }
     const onFieldErrors = callAttributes?.onFieldErrors ?? memoizedDefaultOnFieldErrors
@@ -134,6 +133,6 @@ export const useServiceMutation = <
     mutation: memoizedMutation,
     data: memoizedMutation.data ?? null,
     fetching: memoizedMutation.loading,
-    call: wrappedCall as unknown as ServicePropCall<ATTRIBUTES, DATA, CALL_ATTRIBUTES>,
+    call: wrappedCall,
   }), [memoizedMutation, wrappedCall])
 }
