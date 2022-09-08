@@ -10,30 +10,34 @@ import {
   useMemo,
   useRef,
 } from 'react'
-import {
+import type {
   DocumentNode,
   QueryHookOptions,
   TypedDocumentNode,
   QueryResult,
+} from '@apollo/client'
+import {
   useQuery,
 } from '@apollo/client'
 import get from 'lodash.get'
 import type { Get } from 'type-fest'
-import {
+import type {
   CallAttributes,
   ServiceError,
-  ServiceErrorException,
   ServiceProp,
+} from '@txo/service-prop'
+import {
+  ServiceErrorException,
 } from '@txo/service-prop'
 import { configManager } from '@txo-peer-dep/service-graphql'
 import {
   useMemoObject,
 } from '@txo/hooks-react'
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
+import type { Typify } from '@txo/types'
 
 import { serviceContext } from '../Api/ContextHelper'
 import { getName } from '../Api/OperationHelper'
-import { Typify } from '@txo/types'
 
 const calculateContext = (query: DocumentNode, variables: Record<string, unknown> | undefined): string => (
   serviceContext(getName(query), variables ?? {})

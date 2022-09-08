@@ -4,15 +4,17 @@
  * @Copyright: Technology Studio
 **/
 
-import {
+import type {
   ServiceError,
 } from '@txo/service-prop'
 import { isObject } from '@txo/functional'
 import set from 'lodash.set'
 
-import {
+import type {
   ErrorMap,
   ErrorMapper,
+} from '../Model/Types'
+import {
   VALIDATION_ERROR,
 } from '../Model/Types'
 

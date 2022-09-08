@@ -4,35 +4,37 @@
  * @Copyright: Technology Studio
 **/
 
+import type { DependencyList } from 'react'
 import {
-  DependencyList,
   useCallback,
   useContext,
   useMemo,
   useRef,
 } from 'react'
-import {
+import type {
   CallAttributes,
   ServiceProp,
   ServiceErrorException,
 } from '@txo/service-prop'
 import { useMemoObject } from '@txo/hooks-react'
 import type { Typify } from '@txo/types'
-import {
+import type {
   DocumentNode,
   MutationOptions as ApolloMutationOptions,
   TypedDocumentNode,
   MutationResult,
-  useMutation,
   MutationFunctionOptions as MutateFunctionOptions,
   FetchResult,
+} from '@apollo/client'
+import {
+  useMutation,
 } from '@apollo/client'
 import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
 import { operationPromiseProcessor } from '@txo/service-graphql'
 
 import { serviceContext } from '../Api/ContextHelper'
 import { getName } from '../Api/OperationHelper'
-import { ErrorMap } from '../Model/Types'
+import type { ErrorMap } from '../Model/Types'
 import { applyErrorMap } from '../Api/ErrorMapHelper'
 
 const calculateContext = (mutation: DocumentNode, variables?: Record<string, unknown>): string => (

@@ -4,7 +4,7 @@
  * @Copyright: Technology Studio
 **/
 
-import { ServiceError } from '@txo/service-prop'
+import type { ServiceError } from '@txo/service-prop'
 
 export type ErrorMapper = ((options: {
   error: ServiceError,

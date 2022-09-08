@@ -4,7 +4,7 @@
  * @Copyright: Technology Studio
 **/
 
-import {
+import type {
   DocumentNode,
   OperationDefinitionNode,
 } from 'graphql'
