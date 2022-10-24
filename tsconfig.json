@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "lib": ["dom"],
     "noEmit": false,
     "declaration": true,
     "outDir": "./lib",

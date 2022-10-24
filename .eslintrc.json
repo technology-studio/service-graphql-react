@@ -1,6 +1,6 @@
 {
   "extends": [
-    "txo-typescript",
+    "txo-typescript-react",
     "plugin:jest/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -9,11 +9,5 @@
       "./tsconfig.json",
       "./__tests__/tsconfig.json"
     ]
-  },
-  "plugins": [
-    "react-hooks"
-  ],
-  "rules": {
-    "react-hooks/exhaustive-deps": "error"
   }
 }
