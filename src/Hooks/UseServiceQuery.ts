@@ -65,10 +65,15 @@ const isServiceErrorListEqual = (a: ServiceError[], b: ServiceError[]): boolean 
 }
 
 // TODO: find a better way to parse type of dataPath (from attribute)
-export const useServiceQuery = <ATTRIBUTES extends Record<string, unknown>, DATA, CALL_ATTRIBUTES, DATA_PATH extends string>(
-  queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
-  options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
-): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
+export const useServiceQuery = <
+ATTRIBUTES extends Record<string, unknown>,
+DATA,
+CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>,
+DATA_PATH extends string
+>(
+    queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
+    options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
+  ): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
   const {
     dataPath,
     options: queryOptions,
