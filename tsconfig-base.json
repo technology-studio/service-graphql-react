@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
+    "jsx": "react",
     "strict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noEmit": true,
+    "declaration": false,
     "esModuleInterop": true,
     "alwaysStrict": true,
     "strictBindCallApply": true,
