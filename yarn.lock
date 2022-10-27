@@ -1353,10 +1353,10 @@
   resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.1.tgz#fd96044751a9930cf5136a7248ad8989efce756c"
   integrity sha512-CC+ZkiTbytuNVqvusQFdp72i1G2MhA5ITohxEMEi0qGLGIzxtYT20vYkoFRC8XPbsZydbu9uVtpH5wA/X/g/eg==
 
-"@txo/service-graphql@^4.3.1":
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.1.tgz#5c33a781912a110d7f76e73c8377035f164730bb"
-  integrity sha512-JlyK/RApkf7MtWXW2uyuUUjAIbspNN8c/HHCOuUQBbmFahQmCgb4PMmV5Zi0HF2stDz7ChHRNHqFC8EbDvHAtw==
+"@txo/service-graphql@^4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.2.tgz#904b8a0d42dcc98814a7159e0f369fbe256d6480"
+  integrity sha512-xWcwCI2DQKrdytWqRYBT8RDPJxQ7LeSNgMy2ZCZAbaDTjkvxa4dZuCcsmDuvOWquJKpnLYZTQok1SmO3p4u4nw==
   dependencies:
     "@txo/log" "^2.0.1"
     "@txo/service-prop" "^2.2.1"
