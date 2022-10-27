@@ -1,3 +1,10 @@
+## [2.2.4](https://github.com/technology-studio/service-graphql-react/compare/v2.2.3...v2.2.4) (2022-10-27)
+
+
+### Bug fixes
+
+* fix package.json ([#13](https://github.com/technology-studio/service-graphql-react/issues/13)) ([77e3efc](https://github.com/technology-studio/service-graphql-react/commit/77e3efce3f8d714b4231a5b80464d2b052612b21))
+
 ## [2.2.3](https://github.com/technology-studio/service-graphql-react/compare/v2.2.2...v2.2.3) (2022-10-25)
 
 
