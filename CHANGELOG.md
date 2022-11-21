@@ -1,3 +1,10 @@
+## [2.3.0](https://github.com/technology-studio/service-graphql-react/compare/v2.2.7...v2.3.0) (2022-11-21)
+
+
+### Features
+
+* add promiselessRefetch with promise helpers ([#53](https://github.com/technology-studio/service-graphql-react/issues/53)) ([059662f](https://github.com/technology-studio/service-graphql-react/commit/059662f9d2afce6a5401f848303d294658839864))
+
 ## [2.2.7](https://github.com/technology-studio/service-graphql-react/compare/v2.2.6...v2.2.7) (2022-11-05)
 
 
