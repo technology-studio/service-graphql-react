@@ -5,6 +5,7 @@
 **/
 
 import {
+  useCallback,
   useContext,
   useLayoutEffect,
   useMemo,
@@ -38,6 +39,7 @@ import type { Typify } from '@txo/types'
 
 import { serviceContext } from '../Api/ContextHelper'
 import { getName } from '../Api/OperationHelper'
+import { asyncToCallback } from '../Api/PromiseHelper'
 
 const calculateContext = (query: DocumentNode, variables: Record<string, unknown> | undefined): string => (
   serviceContext(getName(query), variables ?? {})
@@ -117,10 +119,15 @@ DATA_PATH extends string
     }
   }, [addServiceErrorException, context, exception, memoizedVariables, queryDocument, removeServiceErrorException])
 
+  const promiselessRefetch = useCallback((...args: Parameters<typeof memoizedQuery.refetch>) => {
+    asyncToCallback(memoizedQuery.refetch(...args))
+  }, [memoizedQuery])
+
   return useMemo(() => ({
     query: memoizedQuery,
     data: get(memoizedQuery.data, dataPath),
     fetching: memoizedQuery.loading,
+    promiselessRefetch,
     exception,
-  }), [memoizedQuery, exception, dataPath])
+  }), [memoizedQuery, dataPath, promiselessRefetch, exception])
 }
