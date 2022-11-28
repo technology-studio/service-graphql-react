@@ -34,7 +34,7 @@
     "update-boilerplate-version": "./scripts/update-boilerplate-version.sh"
   },
   "dependencies": {
-    "@txo/hooks-react": "^2.3.4",
+    "@txo/hooks-react": "^2.3.5",
     "@txo/service-graphql": "^4.3.2",
     "@txo/service-prop": "^2.2.2",
     "@txo/types": "^1.3.0",
