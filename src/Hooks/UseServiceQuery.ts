@@ -49,6 +49,7 @@ export type QueryServiceProp<ATTRIBUTES, DATA, MAPPED_DATA, CALL_ATTRIBUTES exte
   Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'clear' | 'options' | 'clearException'>
   & {
     query: QueryResult<DATA, ATTRIBUTES>,
+    promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
   }
 
 type QueryOptions<DATA, ATTRIBUTES, DATA_PATH extends string> = {
