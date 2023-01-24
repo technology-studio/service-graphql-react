@@ -43,13 +43,13 @@
     "type-fest": "^3.5.3"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.7.4",
+    "@apollo/client": "^3.7.5",
     "@txo-peer-dep/service-error-handler-react": "^1.2.2",
     "@txo-peer-dep/service-graphql": "^3.2.2",
     "graphql": "^16.6.0"
   },
   "devDependencies": {
-    "@apollo/client": "^3.7.4",
+    "@apollo/client": "^3.7.5",
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@semantic-release/changelog": "^6.0.2",
