@@ -1,3 +1,10 @@
+## [2.3.9](https://github.com/technology-studio/service-graphql-react/compare/v2.3.8...v2.3.9) (2023-01-31)
+
+
+### Bug fixes
+
+* add missing promiselessRefetch to QueryServiceProp ([#96](https://github.com/technology-studio/service-graphql-react/issues/96)) ([9dd1b40](https://github.com/technology-studio/service-graphql-react/commit/9dd1b40f58af74abed0cf8b152d5bdb27fe39fa9))
+
 ## [2.3.8](https://github.com/technology-studio/service-graphql-react/compare/v2.3.7...v2.3.8) (2023-01-30)
 
 
