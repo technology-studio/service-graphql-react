@@ -16,6 +16,7 @@ import type {
   QueryHookOptions,
   TypedDocumentNode,
   QueryResult,
+  OperationVariables,
 } from '@apollo/client'
 import {
   useQuery,
@@ -45,14 +46,14 @@ const calculateContext = (query: DocumentNode, variables: Record<string, unknown
   serviceContext(getName(query), variables ?? {})
 )
 
-export type QueryServiceProp<ATTRIBUTES, DATA, MAPPED_DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
+export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED_DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
   Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'clear' | 'options' | 'clearException'>
   & {
     query: QueryResult<DATA, ATTRIBUTES>,
     promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
   }
 
-type QueryOptions<DATA, ATTRIBUTES, DATA_PATH extends string> = {
+type QueryOptions<DATA, ATTRIBUTES extends OperationVariables, DATA_PATH extends string> = {
   options?: QueryHookOptions<DATA, ATTRIBUTES>,
   dataPath: DATA_PATH,
 }
