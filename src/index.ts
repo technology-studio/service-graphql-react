@@ -10,6 +10,6 @@ export * from './Api/PromiseHelper'
 export * from './Hooks/UseServiceMutation'
 export {
   useServiceQuery,
-  QueryServiceProp,
+  type QueryServiceProp,
 } from './Hooks/UseServiceQuery'
 export * from './Model/Types'

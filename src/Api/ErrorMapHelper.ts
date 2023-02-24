@@ -20,7 +20,7 @@ import {
 
 const normaliseErrorMap = (errorMap: ErrorMap): ErrorMap => {
   if (isObject(errorMap)) {
-    return Object.keys(errorMap).reduce((normalisedErrorMap: { [key: string]: ErrorMap }, key) => {
+    return Object.keys(errorMap).reduce((normalisedErrorMap: Record<string, ErrorMap>, key) => {
       set(normalisedErrorMap, key, normaliseErrorMap(errorMap[key]))
       return normalisedErrorMap
     }, {})
@@ -48,12 +48,12 @@ const getWithWildcardFallback = (errorMap: ErrorMap, path: string): ErrorMapper 
   if (errorMap === undefined) {
     return undefined
   }
-  if (path) {
+  if (path !== '') {
     if (isObject(errorMap)) {
       const pathList = path.split('.')
       const currentPath = pathList.shift()
       const keyList = Object.keys(errorMap)
-      const currentKey = currentPath && keyList.includes(currentPath) ? currentPath : '*'
+      const currentKey = currentPath != null && currentPath !== '' && keyList.includes(currentPath) ? currentPath : '*'
       return getWithWildcardFallback(errorMap[currentKey], pathList.join('.'))
     } else {
       return undefined
@@ -78,7 +78,7 @@ export const applyErrorMap = (
       const path = [...(graphQlError?.path ?? []), serviceError.key].join('.')
       const errorMapper = getWithWildcardFallback(normalisedErrorMap, path)
 
-      if (errorMapper) {
+      if (errorMapper != null) {
         const nextServiceError = errorMapper({
           error: serviceError,
           fieldErrors,
@@ -87,7 +87,7 @@ export const applyErrorMap = (
         if (nextServiceError !== serviceError) {
           modified = true
         }
-        nextServiceError && nextServiceErrorList.push(nextServiceError)
+        (nextServiceError != null) && nextServiceErrorList.push(nextServiceError)
       } else {
         nextServiceErrorList.push(serviceError)
       }
@@ -95,7 +95,7 @@ export const applyErrorMap = (
       return nextServiceErrorList
     }, [])
 
-  if (onFieldErrors && Object.keys(fieldErrors).length > 0) {
+  if ((onFieldErrors != null) && Object.keys(fieldErrors).length > 0) {
     onFieldErrors(fieldErrors)
   }
 
