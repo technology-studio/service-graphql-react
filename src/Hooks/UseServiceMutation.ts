@@ -101,22 +101,22 @@ export const useServiceMutation = <
     const attributes = { variables, mutation: mutationDocument, ...memoizedOptions }
     const onFieldErrors = callAttributes?.onFieldErrors ?? memoizedDefaultOnFieldErrors
     const context = calculateContext(mutationDocument, variables)
-    exceptionRef.current && removeServiceErrorException(context)
+    ;(exceptionRef.current != null) && removeServiceErrorException(context)
     exceptionRef.current = null
     const operationName = getName(mutationDocument)
     const mutateWithErrorProcessor: typeof mutate = async (options) => (
-      operationPromiseProcessor(mutate(options), {
+      await operationPromiseProcessor(mutate(options), {
         operationName,
         context,
       })
     )
     const nextMutate = mutateFactory?.(mutateWithErrorProcessor) ?? mutateWithErrorProcessor
-    return operationPromiseProcessor(nextMutate(attributes), {
+    return await operationPromiseProcessor(nextMutate(attributes), {
       operationName,
       context,
     })
       .catch(async (serviceErrorException: ServiceErrorException) => {
-        if (memoizedErrorMap) {
+        if (memoizedErrorMap != null) {
           serviceErrorException.serviceErrorList = applyErrorMap(
             serviceErrorException.serviceErrorList,
             memoizedErrorMap,

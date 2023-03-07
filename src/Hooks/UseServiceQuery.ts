@@ -95,7 +95,7 @@ DATA_PATH extends string
   ), [queryDocument, memoizedVariables])
   const exception = useMemo(() => {
     const operationName = getName(queryDocument)
-    if (memoizedQuery.error) {
+    if (memoizedQuery.error != null) {
       const errorList = configManager.config.errorResponseTranslator(memoizedQuery.error, {
         context,
         operationName,
@@ -110,14 +110,14 @@ DATA_PATH extends string
     return null
   }, [context, memoizedQuery, queryDocument])
   useLayoutEffect(() => {
-    if (exception && !shownExceptionListRef.current.find(shownException => (
+    if ((exception != null) && (shownExceptionListRef.current.find(shownException => (
       isServiceErrorListEqual(shownException.serviceErrorList, exception.serviceErrorList)
-    ))) {
+    )) == null)) {
       addServiceErrorException(exception)
       shownExceptionListRef.current.push(exception)
     }
     return () => {
-      exception && removeServiceErrorException(context)
+      (exception != null) && removeServiceErrorException(context)
     }
   }, [addServiceErrorException, context, exception, memoizedVariables, queryDocument, removeServiceErrorException])
 
