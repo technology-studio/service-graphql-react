@@ -1,3 +1,10 @@
+## [2.3.33](https://github.com/technology-studio/service-graphql-react/compare/v2.3.32...v2.3.33) (2023-06-22)
+
+
+### Bug fixes
+
+* **deps:** update dependency graphql to ^16.7.1 ([ae6999c](https://github.com/technology-studio/service-graphql-react/commit/ae6999c98332e347091ff606fb43a58b9e5908d3))
+
 ## [2.3.32](https://github.com/technology-studio/service-graphql-react/compare/v2.3.31...v2.3.32) (2023-06-21)
 
 
