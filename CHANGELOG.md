@@ -1,3 +1,10 @@
+## [2.3.34](https://github.com/technology-studio/service-graphql-react/compare/v2.3.33...v2.3.34) (2023-07-08)
+
+
+### Bug fixes
+
+* **deps:** update dependency @apollo/client to ^3.7.17 ([4bddd54](https://github.com/technology-studio/service-graphql-react/commit/4bddd54bd52404caf0506fcf94dee48a22b16bfd))
+
 ## [2.3.33](https://github.com/technology-studio/service-graphql-react/compare/v2.3.32...v2.3.33) (2023-06-22)
 
 
