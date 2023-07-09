@@ -1,3 +1,10 @@
+## [2.3.35](https://github.com/technology-studio/service-graphql-react/compare/v2.3.34...v2.3.35) (2023-07-09)
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^3.13.0 ([bc6a51c](https://github.com/technology-studio/service-graphql-react/commit/bc6a51c09e881f10752d3df7d59b682d4c5716c3))
+
 ## [2.3.34](https://github.com/technology-studio/service-graphql-react/compare/v2.3.33...v2.3.34) (2023-07-08)
 
 
