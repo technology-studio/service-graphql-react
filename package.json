@@ -33,6 +33,9 @@
     "semantic-release": "semantic-release",
     "update-boilerplate-version": "./scripts/update-boilerplate-version.sh"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@txo/hooks-react": "^2.3.6",
     "@txo/service-graphql": "^4.3.2",
