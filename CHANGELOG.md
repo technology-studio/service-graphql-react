@@ -1,3 +1,10 @@
+## [2.3.38](https://github.com/technology-studio/service-graphql-react/compare/v2.3.37...v2.3.38) (2023-07-20)
+
+
+### Bug fixes
+
+* **deps:** update eslint txo packages ([#324](https://github.com/technology-studio/service-graphql-react/issues/324)) ([c299a1e](https://github.com/technology-studio/service-graphql-react/commit/c299a1ee855ac4d07e3c962751f0a7d1a7827247))
+
 ## [2.3.37](https://github.com/technology-studio/service-graphql-react/compare/v2.3.36...v2.3.37) (2023-07-19)
 
 
