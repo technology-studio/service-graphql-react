@@ -4,9 +4,10 @@
  * @Copyright: Technology Studio
 **/
 
-import type {
-  DocumentNode,
-  OperationDefinitionNode,
+import {
+  Kind,
+  type DocumentNode,
+  type OperationDefinitionNode,
 } from 'graphql'
 
 const upperCaseFirst = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
@@ -24,7 +25,7 @@ const pascalCase = (string: string): string => (
 export const getName = (query: DocumentNode): string => {
   const definition = query.definitions
     .find(definition => (
-      definition.kind === 'OperationDefinition'
+      definition.kind === Kind.OPERATION_DEFINITION
     )) as OperationDefinitionNode
   const operationName = definition?.name?.value
     .split('_')

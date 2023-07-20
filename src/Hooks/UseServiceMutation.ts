@@ -93,7 +93,8 @@ export const useServiceMutation = <
     addServiceErrorException,
     removeServiceErrorException,
   } = useContext(ErrorHandlerContext)
-  const memoizedOptions = useMemoObject(mutationOptions as Omit<ApolloMutationOptions<DATA, ATTRIBUTES>, 'mutation'>)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const memoizedOptions = useMemoObject(mutationOptions!)
   const wrappedCall = useCallback(async (
     variables: ATTRIBUTES,
     callAttributes?: CALL_ATTRIBUTES,
@@ -115,6 +116,7 @@ export const useServiceMutation = <
       operationName,
       context,
     })
+      // eslint-disable-next-line @typescript-eslint/require-await
       .catch(async (serviceErrorException: ServiceErrorException) => {
         if (memoizedErrorMap != null) {
           serviceErrorException.serviceErrorList = applyErrorMap(

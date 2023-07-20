@@ -9,6 +9,7 @@ import type {
 } from '@txo/service-prop'
 import { isObject } from '@txo/functional'
 import set from 'lodash.set'
+import { type GraphQLError } from 'graphql'
 
 import type {
   ErrorMap,
@@ -73,8 +74,7 @@ export const applyErrorMap = (
   const nextServiceErrorList = serviceErrorList
     .reduce<ServiceError[]>(
     (nextServiceErrorList, serviceError) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const graphQlError: any = serviceError.data
+      const graphQlError = serviceError.data as GraphQLError
       const path = [...(graphQlError?.path ?? []), serviceError.key].join('.')
       const errorMapper = getWithWildcardFallback(normalisedErrorMap, path)
 
