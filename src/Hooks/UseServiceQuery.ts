@@ -127,7 +127,7 @@ DATA_PATH extends string
 
   return useMemo(() => ({
     query: memoizedQuery,
-    data: get(memoizedQuery.data, dataPath),
+    data: get(memoizedQuery.data, dataPath) as Get<DATA, DATA_PATH> | null,
     fetching: memoizedQuery.loading,
     promiselessRefetch,
     exception,
