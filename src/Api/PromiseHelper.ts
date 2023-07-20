@@ -10,7 +10,7 @@ export type ResultlessPromise = {
 
 export const suppressResults = (promise: Promise<unknown>): ResultlessPromise => (
   (promise
-    .then(async () => { await Promise.resolve() })
+    .then(() => undefined)
     .catch(() => undefined) as ResultlessPromise)
 )
 

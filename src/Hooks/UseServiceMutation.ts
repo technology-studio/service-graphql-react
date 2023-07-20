@@ -116,7 +116,8 @@ export const useServiceMutation = <
       operationName,
       context,
     })
-      .catch((serviceErrorException: ServiceErrorException) => {
+      // eslint-disable-next-line @typescript-eslint/require-await
+      .catch(async (serviceErrorException: ServiceErrorException) => {
         if (memoizedErrorMap != null) {
           serviceErrorException.serviceErrorList = applyErrorMap(
             serviceErrorException.serviceErrorList,
