@@ -1553,14 +1553,6 @@
     "@txo/log" "^2.0.1"
     utility-types "^3.10.0"
 
-"@txo/functional@^4.6.1":
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.2.tgz#679c38a1f0bea3db8292f661be6ba32501c0de1b"
-  integrity sha512-qjtjDP6/xFTuUQXCpce0bRg/0apxflKIbwjK3y4cABYalIZ/KSpcaxgO3JKdh0+iHO6M/dFaLVwM1/X84wqX8w==
-  dependencies:
-    "@txo/log" "^2.0.1"
-    utility-types "^3.10.0"
-
 "@txo/functional@^4.6.3":
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.3.tgz#280fa88ffa002176a685e31094685f125f604c1d"
@@ -1586,13 +1578,6 @@
   resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.1.tgz#fd96044751a9930cf5136a7248ad8989efce756c"
   integrity sha512-CC+ZkiTbytuNVqvusQFdp72i1G2MhA5ITohxEMEi0qGLGIzxtYT20vYkoFRC8XPbsZydbu9uVtpH5wA/X/g/eg==
 
-"@txo/log@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.2.tgz#98286a2ddcf9d06468634d6a497ff001bff568de"
-  integrity sha512-uuiI41ApkuIubX/JFDgmaJublNJUQStJ8II1/PL6HAk5TR+vWnwqwiP2BMC0Xi9b5mhb40bJh8gK/tnGlUPTaA==
-  dependencies:
-    "@txo/functional" "^4.6.1"
-
 "@txo/log@^2.0.3", "@txo/log@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.4.tgz#6a4268d8964840ffebfa1479d059037c3e267360"
@@ -1600,12 +1585,12 @@
   dependencies:
     "@txo/functional" "^4.6.3"
 
-"@txo/service-graphql@^4.3.3":
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.3.tgz#558285736036ff1f41558504760de19835c7bcfa"
-  integrity sha512-cwyhffjUXGyj9yhMfdnGAkH9YlQ0WVC1/jqQ91xAtcIw9jfN/mENffJLHamNZwfShXE/jHP1CCNu8PfaHJLP1Q==
+"@txo/service-graphql@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.5.tgz#71f25c60cdcefde887d90f061af713be1172c153"
+  integrity sha512-/X9Un0bYSIT+DnDQMqqd2NNKDpG0w8DrzqUbatgfSSv89TjCs7sJ2fj8PtpN6wwU1Fwz044Pa3jOax9s/CH0lg==
   dependencies:
-    "@txo/log" "^2.0.2"
+    "@txo/log" "^2.0.4"
     "@txo/service-prop" "^2.2.2"
     lodash.get "^4.4.2"
 
