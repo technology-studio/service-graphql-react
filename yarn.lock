@@ -1553,6 +1553,14 @@
     "@txo/log" "^2.0.1"
     utility-types "^3.10.0"
 
+"@txo/functional@^4.6.1":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.2.tgz#679c38a1f0bea3db8292f661be6ba32501c0de1b"
+  integrity sha512-qjtjDP6/xFTuUQXCpce0bRg/0apxflKIbwjK3y4cABYalIZ/KSpcaxgO3JKdh0+iHO6M/dFaLVwM1/X84wqX8w==
+  dependencies:
+    "@txo/log" "^2.0.1"
+    utility-types "^3.10.0"
+
 "@txo/hooks-react@^2.3.6":
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/@txo/hooks-react/-/hooks-react-2.3.6.tgz#dfe134a7be105d46d391bb48cbbfc3921c429f51"
@@ -1570,19 +1578,21 @@
   resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.1.tgz#fd96044751a9930cf5136a7248ad8989efce756c"
   integrity sha512-CC+ZkiTbytuNVqvusQFdp72i1G2MhA5ITohxEMEi0qGLGIzxtYT20vYkoFRC8XPbsZydbu9uVtpH5wA/X/g/eg==
 
-"@txo/service-graphql@^4.3.2":
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.2.tgz#904b8a0d42dcc98814a7159e0f369fbe256d6480"
-  integrity sha512-xWcwCI2DQKrdytWqRYBT8RDPJxQ7LeSNgMy2ZCZAbaDTjkvxa4dZuCcsmDuvOWquJKpnLYZTQok1SmO3p4u4nw==
+"@txo/log@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.2.tgz#98286a2ddcf9d06468634d6a497ff001bff568de"
+  integrity sha512-uuiI41ApkuIubX/JFDgmaJublNJUQStJ8II1/PL6HAk5TR+vWnwqwiP2BMC0Xi9b5mhb40bJh8gK/tnGlUPTaA==
   dependencies:
-    "@txo/log" "^2.0.1"
-    "@txo/service-prop" "^2.2.1"
-    lodash.get "^4.4.2"
+    "@txo/functional" "^4.6.1"
 
-"@txo/service-prop@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.1.tgz#47781f5ed37556503ed9363cc995e2d1c8fe07f1"
-  integrity sha512-6Ieb0bt8xMfsEf/6bHdOwOMlxtE9vrGx6ZZylXM1Dtp2qYWkw0aHI8dNaeGAMsWem9Raikz/qAgaZqiLXFy8ZQ==
+"@txo/service-graphql@^4.3.3":
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.3.tgz#558285736036ff1f41558504760de19835c7bcfa"
+  integrity sha512-cwyhffjUXGyj9yhMfdnGAkH9YlQ0WVC1/jqQ91xAtcIw9jfN/mENffJLHamNZwfShXE/jHP1CCNu8PfaHJLP1Q==
+  dependencies:
+    "@txo/log" "^2.0.2"
+    "@txo/service-prop" "^2.2.2"
+    lodash.get "^4.4.2"
 
 "@txo/service-prop@^2.2.2":
   version "2.2.2"
