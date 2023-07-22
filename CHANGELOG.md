@@ -1,3 +1,10 @@
+## [2.3.45](https://github.com/technology-studio/service-graphql-react/compare/v2.3.44...v2.3.45) (2023-07-22)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo-peer-dep/service-graphql to ^3.2.5 ([21b5f0d](https://github.com/technology-studio/service-graphql-react/commit/21b5f0d918517361f41058f02dec06de76ecd24b))
+
 ## [2.3.44](https://github.com/technology-studio/service-graphql-react/compare/v2.3.43...v2.3.44) (2023-07-22)
 
 
