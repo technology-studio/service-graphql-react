@@ -1545,14 +1545,6 @@
   resolved "https://registry.yarnpkg.com/@txo/config-manager/-/config-manager-3.1.0.tgz#9a38d0ba2b2355f973775bafe884cdbb7225dc0d"
   integrity sha512-rYSd5Mk4URK3hs7Y5nSXst4KOidmjJPeaNkh+D/L1ndVodvKwXO/rZV00VYXpW71/KSaG1Hj83At3r4WmboKvg==
 
-"@txo/functional@^4.6.3":
-  version "4.6.3"
-  resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.3.tgz#280fa88ffa002176a685e31094685f125f604c1d"
-  integrity sha512-DUd+P+mRb53Ogot4YqSOPN4h8CxYFEcoK+GHwd0F4CP9oVH047NFU0Driw3B4HMxF1pMlcOH/x1SpO5SjNUhkg==
-  dependencies:
-    "@txo/log" "^2.0.3"
-    utility-types "^3.10.0"
-
 "@txo/functional@^4.6.4", "@txo/functional@^4.6.5":
   version "4.6.5"
   resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.5.tgz#9fbee768395d4655a516131f4f998c032e3ea937"
@@ -1597,13 +1589,6 @@
   resolved "https://registry.yarnpkg.com/@txo/log-console/-/log-console-3.0.0.tgz#56506a8c6afea9109301ff96520c43815814022d"
   integrity sha512-Dl7dnPMUXRr1JSBysUmzT9/RjMm9FWJdtZ9CXVnh9K4qwpT4fnjDV+GWiHHWAqob47XcE7N98M8rShGmpsukqg==
 
-"@txo/log@^2.0.3", "@txo/log@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.4.tgz#6a4268d8964840ffebfa1479d059037c3e267360"
-  integrity sha512-IDXO3Vfsu/YHZQyYqr4CEYqt87y8KLB/3W9/Ra9NlOr9OG+OVJ8ZE9wXWWli9YAh1iCuGTM32/zNGndobbP9dA==
-  dependencies:
-    "@txo/functional" "^4.6.3"
-
 "@txo/log@^2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.5.tgz#43f6fcac763b6ae38d1ae6d6121dcbf7b37a2a0d"
@@ -1639,19 +1624,14 @@
   dependencies:
     "@txo/functional" "^4.6.8"
 
-"@txo/service-graphql@^4.3.5":
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.5.tgz#71f25c60cdcefde887d90f061af713be1172c153"
-  integrity sha512-/X9Un0bYSIT+DnDQMqqd2NNKDpG0w8DrzqUbatgfSSv89TjCs7sJ2fj8PtpN6wwU1Fwz044Pa3jOax9s/CH0lg==
+"@txo/service-graphql@^4.3.15":
+  version "4.3.15"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.15.tgz#87975c5f44efc6b55b339214470b16b9550720c6"
+  integrity sha512-Hnv2Zm081FzZ7tmkYe/0D6BgFshL2PlHsUP0js9iRJ/zSyRS9CEot6FHtSc+VfbCUwChSUgXyoJpyX7onp721g==
   dependencies:
-    "@txo/log" "^2.0.4"
-    "@txo/service-prop" "^2.2.2"
+    "@txo/log" "^2.0.9"
+    "@txo/service-prop" "^2.2.8"
     lodash.get "^4.4.2"
-
-"@txo/service-prop@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.2.tgz#42dfd1088f662c92583b3521b45f29dd53b476ce"
-  integrity sha512-E2RNlFgrLX4A5/ZDlvOABZPtNvjxWY4XG0SKHZrQ1UUWmC0QGZINQlq1+oKkRb4SZwgNBqyhKRKozO7VuurvwQ==
 
 "@txo/service-prop@^2.2.7":
   version "2.2.7"
