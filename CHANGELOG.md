@@ -1,3 +1,10 @@
+## [2.3.55](https://github.com/technology-studio/service-graphql-react/compare/v2.3.54...v2.3.55) (2023-07-23)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo-peer-dep/service-error-handler-react to ^1.2.11 ([5d7c793](https://github.com/technology-studio/service-graphql-react/commit/5d7c793e4ed82b9c79fbc1fae95d4e70fa0cce02))
+
 ## [2.3.54](https://github.com/technology-studio/service-graphql-react/compare/v2.3.53...v2.3.54) (2023-07-23)
 
 
