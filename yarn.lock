@@ -1569,12 +1569,20 @@
     "@txo/log" "^2.0.6"
     utility-types "^3.10.0"
 
-"@txo/hooks-react@^2.3.10":
-  version "2.3.10"
-  resolved "https://registry.yarnpkg.com/@txo/hooks-react/-/hooks-react-2.3.10.tgz#5c8c4b0eb3e41949351b33f4df5faa52676950e1"
-  integrity sha512-PM7nlfM1qe2JBncAACHBtfURg2F1FHKpoSTO3COp0KJq8iMGPnN30g/WeR5xPOBfzegX9IM4uBBxEr2H+UviKQ==
+"@txo/functional@^4.6.7":
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.7.tgz#356d668c12f95d6b0ee63a2e078b4ab1655d334c"
+  integrity sha512-GlA+/92gJO08tl4HpVn+BfNyMXIzm3VJ9UDXN3eyINJnPWOSACWQC52131YFwtoNKrV096xDAqrD/D0DRRcXng==
   dependencies:
-    "@txo/functional" "^4.6.6"
+    "@txo/log" "^2.0.7"
+    utility-types "^3.10.0"
+
+"@txo/hooks-react@^2.3.11":
+  version "2.3.11"
+  resolved "https://registry.yarnpkg.com/@txo/hooks-react/-/hooks-react-2.3.11.tgz#9d2b6e7d0603f5b80e0b8a6c0560a5365740a67f"
+  integrity sha512-UfQu38ZtlPGRfMzNtIiaT6Kf1cbdgm5eJO19Ij2vGLizQOhjHBQ4UrpZLO+R0QB/K4CYD901fS9OTYrOLxsYlQ==
+  dependencies:
+    "@txo/functional" "^4.6.7"
 
 "@txo/log-console@^3.0.0":
   version "3.0.0"
