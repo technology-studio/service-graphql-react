@@ -1532,13 +1532,13 @@
     "@txo/log" "^2.0.9"
     "@txo/service-prop" "^2.2.8"
 
-"@txo-peer-dep/service-graphql@^3.2.9":
-  version "3.2.9"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-graphql/-/service-graphql-3.2.9.tgz#d73b2f366aeb60cde722f485bfa6748cf26a8fee"
-  integrity sha512-ZukvTHfXMdeyl0ZQVsAzqW6rK8+aFG9vkPsMA/OwCYI7yQR3d4TGKUS+qAEPeCnHcCW54YmhAiLNjYvCLUIBTA==
+"@txo-peer-dep/service-graphql@^3.2.10":
+  version "3.2.10"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-graphql/-/service-graphql-3.2.10.tgz#2f9851ce135776042ce14d1aaa143a5b1009e357"
+  integrity sha512-G524Wtv6OU9YnDu1LuBQGTrszfja8pEXRsMgHxvsxQYil6/Lil1vtG2jx+CEmzQXsw2nc6rpVS2TwyI4jrNKpw==
   dependencies:
     "@txo/config-manager" "^3.1.0"
-    "@txo/log" "^2.0.9"
+    "@txo/log" "^2.0.10"
 
 "@txo/config-manager@^3.1.0":
   version "3.1.0"
@@ -1596,6 +1596,13 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@txo/log-console/-/log-console-3.0.0.tgz#56506a8c6afea9109301ff96520c43815814022d"
   integrity sha512-Dl7dnPMUXRr1JSBysUmzT9/RjMm9FWJdtZ9CXVnh9K4qwpT4fnjDV+GWiHHWAqob47XcE7N98M8rShGmpsukqg==
+
+"@txo/log@^2.0.10":
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.10.tgz#20fa29d5d20481dec88eed7b5f45cf7f6741d249"
+  integrity sha512-DPSakF6BAf4z1PiLBkDDf2KKvFhDXZuJnzC14r03vXOTnOZ/82W3bkyTgML/9LqAZXLOIxFsHp/OTAimNtuTjQ==
+  dependencies:
+    "@txo/functional" "^4.6.9"
 
 "@txo/log@^2.0.5":
   version "2.0.5"
