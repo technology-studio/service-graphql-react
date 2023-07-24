@@ -1524,13 +1524,13 @@
   dependencies:
     "@txo/config-manager" "^3.1.0"
 
-"@txo-peer-dep/service-error-handler-react@^1.2.13":
-  version "1.2.13"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.13.tgz#289ecc36b003192145d81988beb5c584f9ee99be"
-  integrity sha512-eF64zc0tpXUIyATCEi1B+KBiplBN7mwVCLNuAfgwKTafcjfDU953b+V+KlOPzTSuEy0lnqAfhJNLs4jLYjrh3w==
+"@txo-peer-dep/service-error-handler-react@^1.2.16":
+  version "1.2.16"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.16.tgz#7f340dfb445c5f051493893568296c980f2b957e"
+  integrity sha512-g/3eHz9e8NATZ0I8DfiJ227E4UwKi3Tf6BlogKSaEaFd2hU7KGZP5UhTWpD4U3w3nAp1ba55UoU+NQKBNQlnPg==
   dependencies:
-    "@txo/log" "^2.0.9"
-    "@txo/service-prop" "^2.2.8"
+    "@txo/log" "^2.0.10"
+    "@txo/service-prop" "^2.2.10"
 
 "@txo-peer-dep/service-graphql@^3.2.10":
   version "3.2.10"
@@ -1544,6 +1544,14 @@
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@txo/config-manager/-/config-manager-3.1.0.tgz#9a38d0ba2b2355f973775bafe884cdbb7225dc0d"
   integrity sha512-rYSd5Mk4URK3hs7Y5nSXst4KOidmjJPeaNkh+D/L1ndVodvKwXO/rZV00VYXpW71/KSaG1Hj83At3r4WmboKvg==
+
+"@txo/functional@^4.6.10":
+  version "4.6.10"
+  resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.10.tgz#ffb1b120ec56af9d24f913da530d2cc059ec2e5c"
+  integrity sha512-bL3ZL1lP7GEWHTQBSn0BBGexHg5/TdIQhmrRzAGsC6aGwAQ1a9nuVXfTx0lVfYQrXvLiSef5EaWYKhnPITGJnw==
+  dependencies:
+    "@txo/log" "^2.0.10"
+    utility-types "^3.10.0"
 
 "@txo/functional@^4.6.4", "@txo/functional@^4.6.5":
   version "4.6.5"
@@ -1647,6 +1655,13 @@
     "@txo/log" "^2.0.9"
     "@txo/service-prop" "^2.2.8"
     lodash.get "^4.4.2"
+
+"@txo/service-prop@^2.2.10":
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.10.tgz#2725cef5c7c47b434777901cf0a5539302df2f5c"
+  integrity sha512-o6YNIYWY7gLbMDucjQOLwLV3KLUJG40iMTv+6hnCdX7z64APlaPIHTrcd+SVeOZnZ27zvgorKx6IUDu/N8nXlA==
+  dependencies:
+    "@txo/functional" "^4.6.10"
 
 "@txo/service-prop@^2.2.7":
   version "2.2.7"
