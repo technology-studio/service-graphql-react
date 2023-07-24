@@ -1,3 +1,10 @@
+## [2.3.61](https://github.com/technology-studio/service-graphql-react/compare/v2.3.60...v2.3.61) (2023-07-24)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo/hooks-react to ^2.3.13 ([3eef682](https://github.com/technology-studio/service-graphql-react/commit/3eef682d91fd8d2fad6192c3f92d6f43e2428d9c))
+
 ## [2.3.60](https://github.com/technology-studio/service-graphql-react/compare/v2.3.59...v2.3.60) (2023-07-24)
 
 
