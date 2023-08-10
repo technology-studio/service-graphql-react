@@ -1512,13 +1512,13 @@
   dependencies:
     "@txo/config-manager" "^3.1.0"
 
-"@txo-peer-dep/service-error-handler-react@^1.2.19":
-  version "1.2.19"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.19.tgz#b5de117202795ba14705861e713a2399d80d50d1"
-  integrity sha512-KPcsp5GJ9Y+wF0+p+MVE8kEG7TOGdKNEM/yqcKjwGYHfBVsE3FX6uKgFtWtd9ulQTkyt5dopfmQK7ihFz4igqQ==
+"@txo-peer-dep/service-error-handler-react@^1.2.20":
+  version "1.2.20"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.20.tgz#743fca2b3acd50fa66fd4cbe2407e2a9f419c107"
+  integrity sha512-3/8eLT4U67YaigynLIqxHmUpEP0oqgYWUpQMnpGhYh+EfDM/dx7LxvD1XDW7KG14AKE4h7N7lqnknMV9SiCB9g==
   dependencies:
     "@txo/log" "^2.0.12"
-    "@txo/service-prop" "^2.2.11"
+    "@txo/service-prop" "^2.2.12"
 
 "@txo-peer-dep/service-graphql@^3.2.12":
   version "3.2.12"
@@ -1545,6 +1545,14 @@
   version "4.6.11"
   resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.11.tgz#0e29b73c6c5ba501dbe00a7f781b62bf90e07809"
   integrity sha512-WbQdvBQUbe0ythYQ5/EcvTc2qPTTeLuN0f1T/XrJB5eV4KJN+ZjkSMk3fnQX+aM125NLSvdYLDufKhj7kod9Dw==
+  dependencies:
+    "@txo/log" "^2.0.12"
+    utility-types "^3.10.0"
+
+"@txo/functional@^4.6.12":
+  version "4.6.12"
+  resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.12.tgz#0fb64b5840ad8edc8f05f7303f374f963d76ce15"
+  integrity sha512-Z21aUxhmqL9t4M+lH2tT59s+SxhtYi3uSUj4akKQTUFyZ2jcOYil8B6IF5H4g4QM2I4B/Ic9KuRCTYWsYDi4Wg==
   dependencies:
     "@txo/log" "^2.0.12"
     utility-types "^3.10.0"
@@ -1670,6 +1678,13 @@
   integrity sha512-FsFhUhr13kqKX4OWMd+wA0dzsUof5bsBUa+xL2pAQFFGd0EkmWizwsscakWlLsz7RRvLhPW01xH6uYFzUYPwuA==
   dependencies:
     "@txo/functional" "^4.6.11"
+
+"@txo/service-prop@^2.2.12":
+  version "2.2.12"
+  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.12.tgz#d8ee194bb70573d2f39060744470474a26dd84d2"
+  integrity sha512-31QQWd9DlQzH5+FXw+d0WNK200YAVhlusrk6M1ktadNiCuX75mve7zR8ItEGSE7uqw75l/0uBsiECypcBNrWhQ==
+  dependencies:
+    "@txo/functional" "^4.6.12"
 
 "@txo/types@^1.5.0":
   version "1.5.0"
@@ -3612,9 +3627,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-"eslint-config-standard-with-typescript@git+https://github.com/technology-studio-forks/eslint-config-standard-with-typescript.git":
+"eslint-config-standard-with-typescript@https://github.com/technology-studio-forks/eslint-config-standard-with-typescript":
   version "36.0.0"
-  resolved "git+https://github.com/technology-studio-forks/eslint-config-standard-with-typescript.git#9cae293318a111911178737ae4159896c19aa700"
+  uid "9cae293318a111911178737ae4159896c19aa700"
+  resolved "https://github.com/technology-studio-forks/eslint-config-standard-with-typescript#9cae293318a111911178737ae4159896c19aa700"
   dependencies:
     "@typescript-eslint/parser" "^6.0.0"
     eslint-config-standard "17.0.0"
