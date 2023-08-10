@@ -1671,10 +1671,10 @@
   dependencies:
     "@txo/functional" "^4.6.11"
 
-"@txo/types@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@txo/types/-/types-1.4.0.tgz#775400d077aac848a99ae62982a1f0601782f4e7"
-  integrity sha512-1ea8PHCVaAA5UrLG+D7hp6tKtrtP04YD/lCeiWROzujLxMV2f8iNNy7ORnaAROXtf7H/2byc3V2yhw1HLM3VMw==
+"@txo/types@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@txo/types/-/types-1.5.0.tgz#49cbfebe15c866d18541f9c7506d408bdb1d0fba"
+  integrity sha512-GrhcM14vcQ7Dl33HMqQs8HP2pSxeC7TurgP9UTmUstSpAclTVnGfExT1WuaxY1gwcp/SRwark91JAKn3IA9WcQ==
 
 "@types/babel__core@^7.1.14":
   version "7.1.19"
