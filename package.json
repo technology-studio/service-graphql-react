@@ -1,6 +1,6 @@
 {
   "name": "@txo/service-graphql-react",
-  "version": "2.3.75",
+  "version": "2.3.76",
   "description": "Technology Studio - Service graphql react",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -40,7 +40,7 @@
     "@txo/hooks-react": "^2.3.15",
     "@txo/service-graphql": "^4.3.21",
     "@txo/service-prop": "^2.2.11",
-    "@txo/types": "^1.4.0",
+    "@txo/types": "^1.5.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "type-fest": "^4.2.0"
