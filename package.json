@@ -61,7 +61,7 @@
     "@txo-peer-dep/service-error-handler-react": "^1.2.20",
     "@txo-peer-dep/service-graphql": "^3.2.12",
     "@txo/log-console": "^3.0.0",
-    "@types/jest": "^29.5.3",
+    "@types/jest": "^29.5.4",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.set": "^4.3.7",
     "@types/node-fetch": "^2.6.4",
