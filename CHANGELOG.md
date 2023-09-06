@@ -1,3 +1,38 @@
+## [2.3.88](https://github.com/technology-studio/service-graphql-react/compare/v2.3.87...v2.3.88) (2023-09-05)
+
+
+### Bug fixes
+
+* **deps:** update dependency @apollo/client to ^3.8.3 ([9429dd8](https://github.com/technology-studio/service-graphql-react/commit/9429dd8d2c830aeb5a6f5902d08d85a7d283613e))
+
+## [2.3.87](https://github.com/technology-studio/service-graphql-react/compare/v2.3.86...v2.3.87) (2023-09-01)
+
+
+### Bug fixes
+
+* **deps:** update dependency @apollo/client to ^3.8.2 ([e96c5b1](https://github.com/technology-studio/service-graphql-react/commit/e96c5b14df62c0e73bf68cf246224de046d7937b))
+
+## [2.3.86](https://github.com/technology-studio/service-graphql-react/compare/v2.3.85...v2.3.86) (2023-08-30)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo/types to ^1.7.0 ([8d63eb1](https://github.com/technology-studio/service-graphql-react/commit/8d63eb1fc265959ad9e826ae0b2001c10c7cb8d6))
+
+## [2.3.85](https://github.com/technology-studio/service-graphql-react/compare/v2.3.84...v2.3.85) (2023-08-28)
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^4.3.1 ([ce6b05e](https://github.com/technology-studio/service-graphql-react/commit/ce6b05ed2d3301ba18e6759d1fa2d1b7ea312965))
+
+## [2.3.84](https://github.com/technology-studio/service-graphql-react/compare/v2.3.83...v2.3.84) (2023-08-26)
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^4.3.0 ([bc5e3ae](https://github.com/technology-studio/service-graphql-react/commit/bc5e3ae05e8b022c04aa37d50b8fcfd6f0dd21a4))
+
 ## [2.3.83](https://github.com/technology-studio/service-graphql-react/compare/v2.3.82...v2.3.83) (2023-08-15)
 
 
