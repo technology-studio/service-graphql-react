@@ -1569,13 +1569,13 @@
   dependencies:
     "@txo/config-manager" "^3.1.0"
 
-"@txo-peer-dep/service-error-handler-react@^1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.20.tgz#743fca2b3acd50fa66fd4cbe2407e2a9f419c107"
-  integrity sha512-3/8eLT4U67YaigynLIqxHmUpEP0oqgYWUpQMnpGhYh+EfDM/dx7LxvD1XDW7KG14AKE4h7N7lqnknMV9SiCB9g==
+"@txo-peer-dep/service-error-handler-react@^1.2.22":
+  version "1.2.22"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.22.tgz#e1fdb122279eeb1898d7ffc7f3b6c3997bd02157"
+  integrity sha512-LjBK9cn98awW8wqGrPsHSMVtVQjqjqMoG4GwTjhUNWusn8cfegrWI8Y47MxrSrZma3KnkMgURy9hs1P9JYCnsw==
   dependencies:
-    "@txo/log" "^2.0.12"
-    "@txo/service-prop" "^2.2.12"
+    "@txo/log" "^2.0.13"
+    "@txo/service-prop" "^2.2.13"
 
 "@txo-peer-dep/service-graphql@^3.2.13":
   version "3.2.13"
@@ -1596,6 +1596,14 @@
   integrity sha512-Z21aUxhmqL9t4M+lH2tT59s+SxhtYi3uSUj4akKQTUFyZ2jcOYil8B6IF5H4g4QM2I4B/Ic9KuRCTYWsYDi4Wg==
   dependencies:
     "@txo/log" "^2.0.12"
+    utility-types "^3.10.0"
+
+"@txo/functional@^4.6.15":
+  version "4.6.15"
+  resolved "https://registry.yarnpkg.com/@txo/functional/-/functional-4.6.15.tgz#f3e36be137396389140f26a695fd2b40fb3eface"
+  integrity sha512-wAcKjzmRKTShSJFG7qfXg8Rfw12W65I8METllqa8iqttUmEknwrogu4Iw30LmTOH0czPkXazkxGsct6QcPPlEg==
+  dependencies:
+    "@txo/log" "^2.0.13"
     utility-types "^3.10.0"
 
 "@txo/hooks-react@^2.3.17":
@@ -1635,6 +1643,13 @@
   integrity sha512-31QQWd9DlQzH5+FXw+d0WNK200YAVhlusrk6M1ktadNiCuX75mve7zR8ItEGSE7uqw75l/0uBsiECypcBNrWhQ==
   dependencies:
     "@txo/functional" "^4.6.12"
+
+"@txo/service-prop@^2.2.13":
+  version "2.2.14"
+  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.14.tgz#d6f91ab70c6aed816f519b1b96a7a26625291521"
+  integrity sha512-A+xGhYRcBBlbVzyPCHj6AD5zNQfyGjKfuacHud7aCfER62f1COzsvICIO7+LD2Lony2btTFE+a+gTK8Boowhew==
+  dependencies:
+    "@txo/functional" "^4.6.15"
 
 "@txo/types@^1.7.0":
   version "1.7.0"
