@@ -1628,13 +1628,13 @@
   resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.13.tgz#663100f59df18f4ddec9d85f62a20ec4b5e24b54"
   integrity sha512-fDUAJ5n+bC+/xqHFpM4Ua4nuQjWcRLTSksLR5mLXZoUlH787SUzFkpUvjFJeiGKXOqUKt35ImInLZb0oQ6yHhg==
 
-"@txo/service-graphql@^4.3.22":
-  version "4.3.22"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.22.tgz#eca029dcee98c48b649426d517cee77198d6bddf"
-  integrity sha512-lUiJHXjLXbZKy9oI37neHEyFJ/VZZSOYRkhga+lae+9l5trCFxD83UcZ9p3F7lRnvua8S4ItwDLQ/iOf3YuCXA==
+"@txo/service-graphql@^4.3.23":
+  version "4.3.23"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.3.23.tgz#6ae5c7b468f75e7400580f1632eccc3204954e0c"
+  integrity sha512-tSnptt5d8+NJ0aXbtDUdUlWEOyyHmFccdExhXkD4KP337a33va2X6MFIrMUiA9n3Y4qeCL2va+/84ypUFqmNyQ==
   dependencies:
     "@txo/log" "^2.0.13"
-    "@txo/service-prop" "^2.2.12"
+    "@txo/service-prop" "^2.2.13"
     lodash.get "^4.4.2"
 
 "@txo/service-prop@^2.2.12":
