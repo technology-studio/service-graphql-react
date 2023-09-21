@@ -47,7 +47,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3.8.4",
-    "@txo-peer-dep/service-error-handler-react": "^1.2.22",
+    "@txo-peer-dep/service-error-handler-react": "^1.2.23",
     "@txo-peer-dep/service-graphql": "^3.2.13",
     "graphql": "^16.8.1"
   },
@@ -58,7 +58,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@txo-peer-dep/log": "^4.0.2",
-    "@txo-peer-dep/service-error-handler-react": "^1.2.22",
+    "@txo-peer-dep/service-error-handler-react": "^1.2.23",
     "@txo-peer-dep/service-graphql": "^3.2.13",
     "@txo/log-console": "^3.0.0",
     "@types/jest": "^29.5.5",
