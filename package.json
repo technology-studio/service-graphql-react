@@ -52,7 +52,7 @@
     "graphql": "^16.8.1"
   },
   "devDependencies": {
-    "@apollo/client": "^3.8.4",
+    "@apollo/client": "^3.8.6",
     "@txo-peer-dep/log": "^4.0.2",
     "@txo-peer-dep/service-error-handler-react": "^1.2.23",
     "@txo-peer-dep/service-graphql": "^3.2.13",
