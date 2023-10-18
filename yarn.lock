@@ -1688,10 +1688,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash.set@^4.3.7":
-  version "4.3.7"
-  resolved "https://registry.yarnpkg.com/@types/lodash.set/-/lodash.set-4.3.7.tgz#784fccea3fbef4d0949d1897a780f592da700942"
-  integrity sha512-bS5Wkg/nrT82YUfkNYPSccFrNZRL+irl7Yt4iM6OTSQ0VZJED2oUIVm15NkNtUAQ8SRhCe+axqERUV6MJgkeEg==
+"@types/lodash.set@^4.3.8":
+  version "4.3.8"
+  resolved "https://registry.yarnpkg.com/@types/lodash.set/-/lodash.set-4.3.8.tgz#694db1eb1b781860744edebdfd6b039bc2d9f007"
+  integrity sha512-WYIWnVO5xkcEKehhZf0Whrf9wj9D1AuaGTpwT/mCEJXKgdC2UWcMpvRqJahKQNhnOjmGEhpUqbYNJ6gUgdGSQw==
   dependencies:
     "@types/lodash" "*"
 
