@@ -1718,10 +1718,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash.set@^4.3.8":
-  version "4.3.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash.set/-/lodash.set-4.3.8.tgz#694db1eb1b781860744edebdfd6b039bc2d9f007"
-  integrity sha512-WYIWnVO5xkcEKehhZf0Whrf9wj9D1AuaGTpwT/mCEJXKgdC2UWcMpvRqJahKQNhnOjmGEhpUqbYNJ6gUgdGSQw==
+"@types/lodash.set@^4.3.9":
+  version "4.3.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash.set/-/lodash.set-4.3.9.tgz#55d95bce407b42c6655f29b2d0811fd428e698f0"
+  integrity sha512-KOxyNkZpbaggVmqbpr82N2tDVTx05/3/j0f50Es1prxrWB0XYf9p3QNxqcbWb7P1Q9wlvsUSlCFnwlPCIJ46PQ==
   dependencies:
     "@types/lodash" "*"
 
