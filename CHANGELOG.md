@@ -1,3 +1,10 @@
+## [2.3.112](https://github.com/technology-studio/service-graphql-react/compare/v2.3.111...v2.3.112) (2023-11-11)
+
+
+### Bug fixes
+
+* **deps:** update dependency @txo/service-prop to ^2.2.15 ([eee5c83](https://github.com/technology-studio/service-graphql-react/commit/eee5c83d7b6138ad7878efb351c944409f035575))
+
 ## [2.3.111](https://github.com/technology-studio/service-graphql-react/compare/v2.3.110...v2.3.111) (2023-11-11)
 
 
