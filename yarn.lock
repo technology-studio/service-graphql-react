@@ -1526,13 +1526,13 @@
   dependencies:
     "@txo/config-manager" "^3.2.0"
 
-"@txo-peer-dep/service-error-handler-react@^1.2.23":
-  version "1.2.23"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.23.tgz#469f1983dc66a590c2b10735a141d092184fc9fc"
-  integrity sha512-e2wS2RFkcVh1Kh749dJYaIAVb9ciTPZ0fthieGE8bBm26z1jkKnwhj11IZ6fuTioqemBEwi+fbiVIugES6/XgQ==
+"@txo-peer-dep/service-error-handler-react@^1.2.25":
+  version "1.2.25"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.25.tgz#c0a55f74ed2a20d10af1b06f805d74af4e53f0c1"
+  integrity sha512-T5r4azRnxC9FZeBUCjNylgdVw9D/b1vz+y262LKOlTBASm2Jzex2AoU3GQe5yAJUxXNTqkFB470aBp6ryL6OoA==
   dependencies:
-    "@txo/log" "^2.0.13"
-    "@txo/service-prop" "^2.2.14"
+    "@txo/log" "^2.0.14"
+    "@txo/service-prop" "^2.2.15"
 
 "@txo-peer-dep/service-graphql@^3.3.2":
   version "3.3.2"
@@ -1613,7 +1613,7 @@
     "@txo/service-prop" "^2.2.13"
     lodash.get "^4.4.2"
 
-"@txo/service-prop@^2.2.13", "@txo/service-prop@^2.2.14":
+"@txo/service-prop@^2.2.13":
   version "2.2.14"
   resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.14.tgz#d6f91ab70c6aed816f519b1b96a7a26625291521"
   integrity sha512-A+xGhYRcBBlbVzyPCHj6AD5zNQfyGjKfuacHud7aCfER62f1COzsvICIO7+LD2Lony2btTFE+a+gTK8Boowhew==
