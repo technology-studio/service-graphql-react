@@ -1620,6 +1620,13 @@
   dependencies:
     "@txo/functional" "^4.6.15"
 
+"@txo/service-prop@^2.2.15":
+  version "2.2.15"
+  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.15.tgz#bba6b187c3c9b1e9cda8138e59fceeaef518b986"
+  integrity sha512-CMbiC9j7bszpOAQ/9gL9F0OpQmv3Zcj0qZqf3H/0xbn8n9hFuk44wUTBUmRd9bxrnQeRCyBkfluxGcneNyj8NA==
+  dependencies:
+    "@txo/functional" "^4.6.16"
+
 "@txo/types@^1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@txo/types/-/types-1.7.0.tgz#bb9db4417ceae237e51c14897f5c3f8b9f78cba2"
