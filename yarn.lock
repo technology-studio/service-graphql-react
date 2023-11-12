@@ -1526,13 +1526,13 @@
   dependencies:
     "@txo/config-manager" "^3.2.0"
 
-"@txo-peer-dep/service-error-handler-react@^1.2.25":
-  version "1.2.25"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.25.tgz#c0a55f74ed2a20d10af1b06f805d74af4e53f0c1"
-  integrity sha512-T5r4azRnxC9FZeBUCjNylgdVw9D/b1vz+y262LKOlTBASm2Jzex2AoU3GQe5yAJUxXNTqkFB470aBp6ryL6OoA==
+"@txo-peer-dep/service-error-handler-react@^1.2.26":
+  version "1.2.26"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.26.tgz#93a379db1e57b8f87d2dc81fafab86f720c6bc03"
+  integrity sha512-JldWOIke5na81s/iybvalE8rm61d2gcy6CNx+f18u46tqG4CriMVRTAFK63LYivznHV33Dd0/tv0EcMzZOc92g==
   dependencies:
     "@txo/log" "^2.0.14"
-    "@txo/service-prop" "^2.2.15"
+    "@txo/service-prop" "^2.2.16"
 
 "@txo-peer-dep/service-graphql@^3.3.2":
   version "3.3.2"
@@ -1634,6 +1634,13 @@
   integrity sha512-CMbiC9j7bszpOAQ/9gL9F0OpQmv3Zcj0qZqf3H/0xbn8n9hFuk44wUTBUmRd9bxrnQeRCyBkfluxGcneNyj8NA==
   dependencies:
     "@txo/functional" "^4.6.16"
+
+"@txo/service-prop@^2.2.16":
+  version "2.2.16"
+  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.16.tgz#e18264bfd19583faf717f2425f92259f75ee7576"
+  integrity sha512-51R0uGJvp3yttxQ43S739x8TNL0JB4MxmaRHv3IpXgXS5DFsyKlJH8riOuQbH8Ly547ib85Abbu4BS6SmSp5ag==
+  dependencies:
+    "@txo/functional" "^4.6.17"
 
 "@txo/types@^1.7.0":
   version "1.7.0"
