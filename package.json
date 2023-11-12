@@ -56,7 +56,7 @@
     "@txo-peer-dep/log": "^4.0.3",
     "@txo-peer-dep/service-error-handler-react": "^1.2.26",
     "@txo-peer-dep/service-graphql": "^3.3.2",
-    "@txo/commitlint": "^1.0.5",
+    "@txo/commitlint": "^1.0.6",
     "@txo/log-console": "^3.0.0",
     "@txo/semantic-release": "^1.0.2",
     "@types/jest": "^29.5.8",
