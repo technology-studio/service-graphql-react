@@ -1581,7 +1581,7 @@
   resolved "https://registry.yarnpkg.com/@txo/log/-/log-2.0.14.tgz#27be76d85d724c2391228658b43018fa7a1b8f78"
   integrity sha512-ptJYpsGPkJFw2FUmpTstU1gaEea1uVXB/0r5jC1AkvoNe/ozeCos91FnIjxp0eFzu7SgV9OnbAH7hCcGxhVcgQ==
 
-"@txo/semantic-release@^1.0.3":
+"@txo/semantic-release@^1.0.2":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@txo/semantic-release/-/semantic-release-1.0.3.tgz#3feaf9f65c25c087fa242e2f9732fa38a179533b"
   integrity sha512-M3D1Q9fnyXGvsqaN/rG0cqyD0b+XevEI6SVgvRqLRZi84gyRVFBfz/7QWWLqmowZxnqA0SslgXFY8Cc6E0LbFw==
@@ -1606,6 +1606,11 @@
   integrity sha512-51R0uGJvp3yttxQ43S739x8TNL0JB4MxmaRHv3IpXgXS5DFsyKlJH8riOuQbH8Ly547ib85Abbu4BS6SmSp5ag==
   dependencies:
     "@txo/functional" "^4.6.17"
+
+"@txo/tsconfig@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@txo/tsconfig/-/tsconfig-1.1.1.tgz#0e746a34c5a5092459235e15588fb33e94cbf067"
+  integrity sha512-YA8LdOoATb+LgwHlVFKxbR6i4xWkr1h6dGTqLh3HHGe25wYzJ7rixNNWucCXaY270Dmb33JQi5sDe6a1XtwRcg==
 
 "@txo/types@^1.7.0":
   version "1.7.0"
