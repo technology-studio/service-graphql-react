@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["esnext", "dom"],
-    "jsx": "react",
-    "skipLibCheck": true
+    "jsx": "react"
   },
   "extends": "@txo/tsconfig"
 }
