@@ -60,7 +60,7 @@
     "@txo/log-console": "^3.0.0",
     "@txo/semantic-release": "^1.0.4",
     "@txo/tsconfig": "^1.1.1",
-    "@types/jest": "^29.5.10",
+    "@types/jest": "^29.5.11",
     "@types/lodash.get": "^4.4.9",
     "@types/lodash.set": "^4.3.9",
     "@types/node-fetch": "^2.6.9",
