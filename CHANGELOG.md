@@ -1,3 +1,10 @@
+## [2.3.127](https://github.com/technology-studio/service-graphql-react/compare/v2.3.126...v2.3.127) (2024-01-30)
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^4.10.2 ([761f0eb](https://github.com/technology-studio/service-graphql-react/commit/761f0eb8939cd0a15f30d4a12d01234f2e22040f))
+
 ## [2.3.126](https://github.com/technology-studio/service-graphql-react/compare/v2.3.125...v2.3.126) (2024-01-24)
 
 
