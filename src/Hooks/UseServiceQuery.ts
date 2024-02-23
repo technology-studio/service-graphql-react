@@ -140,7 +140,6 @@ export const useServiceQuery = <
         context,
       })
       addServiceErrorException(exception)
-      shownExceptionListRef.current.push(exception)
       throw error
     })
   ), [addServiceErrorException, context, memoizedQuery, queryDocument])
