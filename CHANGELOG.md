@@ -1,3 +1,10 @@
+## [2.4.0](https://github.com/technology-studio/service-graphql-react/compare/v2.3.134...v2.4.0) (2024-02-26)
+
+
+### Features
+
+* add `fetchMoreWithError` function in `useServiceQuery` ([#654](https://github.com/technology-studio/service-graphql-react/issues/654)) ([29c054c](https://github.com/technology-studio/service-graphql-react/commit/29c054c04939b771516e5c2a143e43e1ab5036fc))
+
 ## [2.3.134](https://github.com/technology-studio/service-graphql-react/compare/v2.3.133...v2.3.134) (2024-02-22)
 
 
