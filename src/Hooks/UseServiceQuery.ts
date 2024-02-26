@@ -17,6 +17,7 @@ import type {
   TypedDocumentNode,
   QueryResult,
   OperationVariables,
+  ApolloError,
 } from '@apollo/client'
 import {
   useQuery,
@@ -51,6 +52,7 @@ export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED
   & {
     query: QueryResult<DATA, ATTRIBUTES>,
     promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
+    fetchMoreWithError: QueryResult<DATA, ATTRIBUTES>['fetchMore'],
   }
 
 type QueryOptions<DATA, ATTRIBUTES extends OperationVariables, DATA_PATH extends string> = {
@@ -70,10 +72,10 @@ const isServiceErrorListEqual = (a: ServiceError[], b: ServiceError[]): boolean 
 
 // TODO: find a better way to parse type of dataPath (from attribute)
 export const useServiceQuery = <
-ATTRIBUTES extends Record<string, unknown>,
-DATA,
-CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>,
-DATA_PATH extends string
+  ATTRIBUTES extends Record<string, unknown>,
+  DATA,
+  CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>,
+  DATA_PATH extends string
 >(
     queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
     options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
@@ -125,11 +127,29 @@ DATA_PATH extends string
     asyncToCallback(memoizedQuery.refetch(...args))
   }, [memoizedQuery])
 
+  const fetchMoreWithError: QueryResult<DATA>['fetchMore'] = useCallback(async (...args) => (
+    await memoizedQuery.fetchMore(...args).catch((error: ApolloError) => {
+      const operationName = getName(queryDocument)
+      const errorList = configManager.config.errorResponseTranslator(error, {
+        context,
+        operationName,
+      })
+      const exception = new ServiceErrorException({
+        serviceErrorList: errorList,
+        serviceName: operationName,
+        context,
+      })
+      addServiceErrorException(exception)
+      throw error
+    })
+  ), [addServiceErrorException, context, memoizedQuery, queryDocument])
+
   return useMemo(() => ({
     query: memoizedQuery,
     data: get(memoizedQuery.data, dataPath) as Get<DATA, DATA_PATH> | null,
     fetching: memoizedQuery.loading,
     promiselessRefetch,
+    fetchMoreWithError,
     exception,
-  }), [memoizedQuery, dataPath, promiselessRefetch, exception])
+  }), [memoizedQuery, dataPath, promiselessRefetch, fetchMoreWithError, exception])
 }
