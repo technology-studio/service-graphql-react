@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/technology-studio/service-graphql-react/compare/v2.4.0...v2.4.1) (2024-02-26)
+
+
+### Bug fixes
+
+* rename `fetchMoreWithError` to `fetchMore` ([#655](https://github.com/technology-studio/service-graphql-react/issues/655)) ([09942cf](https://github.com/technology-studio/service-graphql-react/commit/09942cf05e078d63192f8d15d0d56c23061bdd25))
+
 ## [2.4.0](https://github.com/technology-studio/service-graphql-react/compare/v2.3.134...v2.4.0) (2024-02-26)
 
 
