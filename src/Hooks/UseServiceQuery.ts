@@ -52,7 +52,7 @@ export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED
   & {
     query: QueryResult<DATA, ATTRIBUTES>,
     promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
-    fetchMoreWithError: QueryResult<DATA, ATTRIBUTES>['fetchMore'],
+    fetchMore: QueryResult<DATA, ATTRIBUTES>['fetchMore'],
   }
 
 type QueryOptions<DATA, ATTRIBUTES extends OperationVariables, DATA_PATH extends string> = {
@@ -127,7 +127,7 @@ export const useServiceQuery = <
     asyncToCallback(memoizedQuery.refetch(...args))
   }, [memoizedQuery])
 
-  const fetchMoreWithError: QueryResult<DATA>['fetchMore'] = useCallback(async (...args) => (
+  const fetchMore: QueryResult<DATA>['fetchMore'] = useCallback(async (...args) => (
     await memoizedQuery.fetchMore(...args).catch((error: ApolloError) => {
       const operationName = getName(queryDocument)
       const errorList = configManager.config.errorResponseTranslator(error, {
@@ -149,7 +149,7 @@ export const useServiceQuery = <
     data: get(memoizedQuery.data, dataPath) as Get<DATA, DATA_PATH> | null,
     fetching: memoizedQuery.loading,
     promiselessRefetch,
-    fetchMoreWithError,
+    fetchMore,
     exception,
-  }), [memoizedQuery, dataPath, promiselessRefetch, fetchMoreWithError, exception])
+  }), [memoizedQuery, dataPath, promiselessRefetch, fetchMore, exception])
 }
