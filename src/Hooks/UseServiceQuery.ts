@@ -54,6 +54,7 @@ export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED
     query: QueryResult<DATA, ATTRIBUTES>,
     promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
     fetchMore: QueryResult<DATA, ATTRIBUTES>['fetchMore'],
+    fetchMoreFetching: boolean,
   }
 
 type QueryOptions<DATA, ATTRIBUTES extends OperationVariables, DATA_PATH extends string> = {
@@ -156,7 +157,8 @@ export const useServiceQuery = <
   return useMemo(() => ({
     query: memoizedQuery,
     data: get(memoizedQuery.data, dataPath) as Get<DATA, DATA_PATH> | null,
-    fetching: memoizedQuery.loading || fetchMoreFetching,
+    fetching: memoizedQuery.loading,
+    fetchMoreFetching,
     promiselessRefetch,
     fetchMore,
     exception,
