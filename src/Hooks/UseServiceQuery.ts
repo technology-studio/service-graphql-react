@@ -10,6 +10,7 @@ import {
   useLayoutEffect,
   useMemo,
   useRef,
+  useState,
 } from 'react'
 import type {
   DocumentNode,
@@ -90,6 +91,7 @@ export const useServiceQuery = <
     addServiceErrorException,
     removeServiceErrorException,
   } = useContext(ErrorHandlerContext)
+  const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
   const context = useMemo(() => (
@@ -127,29 +129,36 @@ export const useServiceQuery = <
     asyncToCallback(memoizedQuery.refetch(...args))
   }, [memoizedQuery])
 
-  const fetchMore: QueryResult<DATA>['fetchMore'] = useCallback(async (...args) => (
-    await memoizedQuery.fetchMore(...args).catch((error: ApolloError) => {
-      const operationName = getName(queryDocument)
-      const errorList = configManager.config.errorResponseTranslator(error, {
-        context,
-        operationName,
-      })
-      const exception = new ServiceErrorException({
-        serviceErrorList: errorList,
-        serviceName: operationName,
-        context,
-      })
-      addServiceErrorException(exception)
-      throw error
-    })
-  ), [addServiceErrorException, context, memoizedQuery, queryDocument])
+  const fetchMore: QueryResult<DATA>['fetchMore'] = useCallback(async (...args) => {
+    setFetchMoreFetching(true)
+    return (
+      await memoizedQuery.fetchMore(...args)
+        .catch((error: ApolloError) => {
+          const operationName = getName(queryDocument)
+          const errorList = configManager.config.errorResponseTranslator(error, {
+            context,
+            operationName,
+          })
+          const exception = new ServiceErrorException({
+            serviceErrorList: errorList,
+            serviceName: operationName,
+            context,
+          })
+          addServiceErrorException(exception)
+          throw error
+        })
+        .finally(() => {
+          setFetchMoreFetching(false)
+        })
+    )
+  }, [addServiceErrorException, context, memoizedQuery, queryDocument, setFetchMoreFetching])
 
   return useMemo(() => ({
     query: memoizedQuery,
     data: get(memoizedQuery.data, dataPath) as Get<DATA, DATA_PATH> | null,
-    fetching: memoizedQuery.loading,
+    fetching: memoizedQuery.loading || fetchMoreFetching,
     promiselessRefetch,
     fetchMore,
     exception,
-  }), [memoizedQuery, dataPath, promiselessRefetch, fetchMore, exception])
+  }), [memoizedQuery, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, exception])
 }
