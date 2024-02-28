@@ -1,3 +1,10 @@
+## [2.5.0](https://github.com/technology-studio/service-graphql-react/compare/v2.4.1...v2.5.0) (2024-02-28)
+
+
+### Features
+
+* add fetchMore fetching ([#658](https://github.com/technology-studio/service-graphql-react/issues/658)) ([1648a6f](https://github.com/technology-studio/service-graphql-react/commit/1648a6fa1ab1e8df0192a5450ce79dec5c279950))
+
 ## [2.4.1](https://github.com/technology-studio/service-graphql-react/compare/v2.4.0...v2.4.1) (2024-02-26)
 
 
