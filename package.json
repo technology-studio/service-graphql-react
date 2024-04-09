@@ -47,14 +47,14 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3.9.10",
-    "@txo-peer-dep/service-error-handler-react": "^1.2.26",
+    "@txo-peer-dep/service-error-handler-react": "^1.2.28",
     "@txo-peer-dep/service-graphql": "^3.3.2",
     "graphql": "^16.8.1"
   },
   "devDependencies": {
     "@apollo/client": "^3.9.10",
     "@txo-peer-dep/log": "^4.0.4",
-    "@txo-peer-dep/service-error-handler-react": "^1.2.26",
+    "@txo-peer-dep/service-error-handler-react": "^1.2.28",
     "@txo-peer-dep/service-graphql": "^3.3.2",
     "@txo/commitlint": "^1.0.14",
     "@txo/log-console": "^3.0.0",
