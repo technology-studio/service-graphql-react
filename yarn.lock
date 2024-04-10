@@ -1424,13 +1424,13 @@
     semantic-release "^22.0.12"
     semantic-release-slack-bot "^4.0.2"
 
-"@txo/service-graphql@^4.4.5":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.4.5.tgz#187eb141c771e97c5917bb2044b3077b6bc32101"
-  integrity sha512-KdEWZzuS+7vIjSNij/TZh1mkvcwima4svCG17hz6bbmrcHvrUDhI4buBITd6Ro7tpaFnGgxMZuRko5k3lp4zaw==
+"@txo/service-graphql@^4.4.6":
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.4.6.tgz#babb31c0a25256e0a8904007ba8c7d28fb4f1fca"
+  integrity sha512-QdXQ9TxRPTfZ3D9Mr4XWiVCAbPy1+diwRsWEcoAYt4GJWRv+qqZkLQFDLF7KZL0lZJlOmbFEycEq6zi/ul9uCA==
   dependencies:
     "@txo/log" "^2.0.16"
-    "@txo/service-prop" "^2.2.16"
+    "@txo/service-prop" "^2.2.17"
     lodash.get "^4.4.2"
 
 "@txo/service-prop@^2.2.16", "@txo/service-prop@^2.2.17":
