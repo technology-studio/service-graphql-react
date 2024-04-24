@@ -43,7 +43,7 @@
     "@txo/types": "^1.7.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "type-fest": "^4.16.0"
+    "type-fest": "^4.17.0"
   },
   "peerDependencies": {
     "@apollo/client": "^3.9.11",
