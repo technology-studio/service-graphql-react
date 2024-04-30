@@ -43,6 +43,7 @@ import type { Typify } from '@txo/types'
 import { serviceContext } from '../Api/ContextHelper'
 import { getName } from '../Api/OperationHelper'
 import { asyncToCallback } from '../Api/PromiseHelper'
+import { ObservableContext } from '../Api/ObservableContext'
 
 const calculateContext = (query: DocumentNode, variables: Record<string, unknown> | undefined): string => (
   serviceContext(getName(query), variables ?? {})
@@ -84,8 +85,14 @@ export const useServiceQuery = <
   ): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
   const {
     dataPath,
-    options: queryOptions,
+    options: _queryOptions,
   } = options
+
+  const observable = useContext(ObservableContext)
+  const queryOptions = useMemoObject({
+    ..._queryOptions,
+    skip: _queryOptions?.skip ?? !observable,
+  })
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
   const shownExceptionListRef = useRef<(ServiceErrorException)[]>([])
   const {
@@ -95,6 +102,15 @@ export const useServiceQuery = <
   const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
+  const previousData = useRef(memoizedQuery.data)
+  if (memoizedQuery.data !== undefined) {
+    previousData.current = memoizedQuery.data
+  }
+  const data: DATA | null = (
+    observable
+      ? memoizedQuery.data
+      : previousData.current
+  ) ?? null
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
   ), [queryDocument, memoizedVariables])
@@ -156,11 +172,12 @@ export const useServiceQuery = <
 
   return useMemo(() => ({
     query: memoizedQuery,
-    data: get(memoizedQuery.data, dataPath) as Get<DATA, DATA_PATH> | null,
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+    data: get(data, dataPath) as Get<DATA, DATA_PATH> | null,
     fetching: memoizedQuery.loading,
     fetchMoreFetching,
     promiselessRefetch,
     fetchMore,
     exception,
-  }), [memoizedQuery, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, exception])
+  }), [memoizedQuery, data, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, exception])
 }
