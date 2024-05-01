@@ -89,9 +89,10 @@ export const useServiceQuery = <
   } = options
 
   const observable = useContext(ObservableContext)
+  const isSkipped = ((_queryOptions?.skip) ?? false) || !observable
   const queryOptions = useMemoObject({
     ..._queryOptions,
-    skip: _queryOptions?.skip || !observable,
+    skip: isSkipped,
   })
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
   const shownExceptionListRef = useRef<(ServiceErrorException)[]>([])
@@ -102,14 +103,14 @@ export const useServiceQuery = <
   const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
-  const previousData = useRef(memoizedQuery.data)
-  if (memoizedQuery.data !== undefined) {
-    previousData.current = memoizedQuery.data
+  const recentData = useRef(memoizedQuery.data)
+  if (!isSkipped) {
+    recentData.current = memoizedQuery.data
   }
   const data: DATA | null = (
-    observable
+    !isSkipped
       ? memoizedQuery.data
-      : previousData.current
+      : recentData.current
   ) ?? null
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
