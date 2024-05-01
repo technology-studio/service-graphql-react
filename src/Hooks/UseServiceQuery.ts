@@ -91,7 +91,7 @@ export const useServiceQuery = <
   const observable = useContext(ObservableContext)
   const queryOptions = useMemoObject({
     ..._queryOptions,
-    skip: _queryOptions?.skip ?? !observable,
+    skip: _queryOptions?.skip || !observable,
   })
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
   const shownExceptionListRef = useRef<(ServiceErrorException)[]>([])
