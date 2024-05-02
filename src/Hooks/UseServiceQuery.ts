@@ -107,11 +107,7 @@ export const useServiceQuery = <
   if (!isSkipped) {
     recentData.current = memoizedQuery.data
   }
-  const data: DATA | null = (
-    !isSkipped
-      ? memoizedQuery.data
-      : recentData.current
-  ) ?? null
+  const data: DATA | null = recentData.current ?? null
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
   ), [queryDocument, memoizedVariables])
