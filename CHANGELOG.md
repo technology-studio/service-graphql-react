@@ -1,3 +1,10 @@
+## [2.6.0](https://github.com/technology-studio/service-graphql-react/compare/v2.5.22...v2.6.0) (2024-05-02)
+
+
+### Features
+
+* add observable context to prevent refetching data or updating views when not observed ([#721](https://github.com/technology-studio/service-graphql-react/issues/721)) ([357ca5b](https://github.com/technology-studio/service-graphql-react/commit/357ca5bc9c8431cda7b38b9f63353f2e72aed7f2))
+
 ## [2.5.22](https://github.com/technology-studio/service-graphql-react/compare/v2.5.21...v2.5.22) (2024-05-01)
 
 
