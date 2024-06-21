@@ -4,7 +4,9 @@
  * @Copyright: Technology Studio
 **/
 
+import { is } from '@txo/types'
 import {
+  type DefinitionNode,
   Kind,
   type DocumentNode,
   type OperationDefinitionNode,
@@ -22,14 +24,16 @@ const pascalCase = (string: string): string => (
     .replace(/\w/, s => s.toUpperCase())
 )
 
+const isOperationDefinitionNode = (node: DefinitionNode): node is OperationDefinitionNode => (
+  node?.kind === Kind.OPERATION_DEFINITION
+)
+
 export const getName = (query: DocumentNode): string => {
   const definition = query.definitions
-    .find(definition => (
-      definition.kind === Kind.OPERATION_DEFINITION
-    )) as OperationDefinitionNode
+    .find(isOperationDefinitionNode)
   const operationName = definition?.name?.value
     .split('_')
     .map(pascalCase)
     .join('.')
-  return operationName ?? upperCaseFirst(definition.operation)
+  return operationName ?? upperCaseFirst(is(definition).operation)
 }
