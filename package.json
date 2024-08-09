@@ -1,6 +1,6 @@
 {
   "name": "@txo/service-graphql-react",
-  "version": "2.6.22",
+  "version": "2.6.24",
   "description": "Technology Studio - Service graphql react",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -44,20 +44,20 @@
     "@txo/types": "^1.7.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "type-fest": "^4.23.0"
+    "type-fest": "^4.24.0"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.11.3",
+    "@apollo/client": "^3.11.4",
     "@txo-peer-dep/service-error-handler-react": "^1.2.29",
     "@txo-peer-dep/service-graphql": "^3.3.3",
     "graphql": "^16.9.0"
   },
   "devDependencies": {
-    "@apollo/client": "^3.11.3",
+    "@apollo/client": "^3.11.4",
     "@txo-peer-dep/log": "^4.0.4",
     "@txo-peer-dep/service-error-handler-react": "^1.2.29",
     "@txo-peer-dep/service-graphql": "^3.3.3",
-    "@txo/commitlint": "^1.0.15",
+    "@txo/commitlint": "^1.0.16",
     "@txo/log-console": "^3.0.0",
     "@txo/semantic-release": "^2.0.8",
     "@txo/tsconfig": "^1.1.1",
