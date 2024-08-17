@@ -1,3 +1,15 @@
+## [2.6.25](https://github.com/technology-studio/service-graphql-react/compare/v2.6.24...v2.6.25) (2024-08-17)
+
+
+### CI
+
+* add lint command for CI ([#793](https://github.com/technology-studio/service-graphql-react/issues/793)) ([fb22fb0](https://github.com/technology-studio/service-graphql-react/commit/fb22fb0c74eb072e8c9b14fb1943e76a0cc9fba0))
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^4.25.0 ([5f5909d](https://github.com/technology-studio/service-graphql-react/commit/5f5909d6430df551ebdf1dd5b06ad21283d915c1))
+
 ## [2.6.24](https://github.com/technology-studio/service-graphql-react/compare/v2.6.23...v2.6.24) (2024-08-08)
 
 
