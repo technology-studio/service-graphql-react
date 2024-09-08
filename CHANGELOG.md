@@ -1,3 +1,15 @@
+## [2.6.31](https://github.com/technology-studio/service-graphql-react/compare/v2.6.30...v2.6.31) (2024-09-08)
+
+
+### CI
+
+* rename workflows ([#812](https://github.com/technology-studio/service-graphql-react/issues/812)) ([d2e129d](https://github.com/technology-studio/service-graphql-react/commit/d2e129dcf7794fd3acdaa68c9b44a550432bde2d))
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^4.26.1 ([c4771ab](https://github.com/technology-studio/service-graphql-react/commit/c4771ab0b522a77f4e6cb28d6edc316b599d735a))
+
 ## [2.6.30](https://github.com/technology-studio/service-graphql-react/compare/v2.6.29...v2.6.30) (2024-09-05)
 
 
