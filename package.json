@@ -67,7 +67,7 @@
     "@types/lodash.set": "^4.3.9",
     "@types/node-fetch": "^2.6.11",
     "@types/react": "^18.3.5",
-    "concurrently": "^9.0.0",
+    "concurrently": "^9.0.1",
     "eslint-config-txo-typescript-react": "^2.0.71",
     "graphql": "^16.9.0",
     "husky": "^9.1.5",
