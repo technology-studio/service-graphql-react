@@ -58,7 +58,7 @@
     "@txo-peer-dep/log": "^4.0.4",
     "@txo-peer-dep/service-error-handler-react": "^1.2.29",
     "@txo-peer-dep/service-graphql": "^3.3.3",
-    "@txo/commitlint": "^1.0.18",
+    "@txo/commitlint": "^1.0.19",
     "@txo/log-console": "^3.0.0",
     "@txo/semantic-release": "^2.0.8",
     "@txo/tsconfig": "^1.1.1",
