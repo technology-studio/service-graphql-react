@@ -27,13 +27,13 @@ import type {
 import {
   useMutation,
 } from '@apollo/client'
-import { reportError } from '@txo-peer-dep/error-handler'
 import { operationPromiseProcessor } from '@txo/service-graphql'
 
 import { serviceContext } from '../Api/ContextHelper'
 import { getName } from '../Api/OperationHelper'
 import type { ErrorMap } from '../Model/Types'
 import { applyErrorMap } from '../Api/ErrorMapHelper'
+import { VoidError } from '../Api/VoidError'
 
 const calculateContext = (mutation: DocumentNode, variables?: Record<string, unknown>): string => (
   serviceContext(getName(mutation), variables ?? {})
@@ -115,7 +115,9 @@ export const useServiceMutation = <
             onFieldErrors,
           )
         }
-        reportError(serviceOperationError)
+        if (serviceOperationError.serviceErrorList.length === 0) {
+          throw new VoidError()
+        }
         throw serviceOperationError
       })
   }, [mutationDocument, memoizedOptions, memoizedDefaultOnFieldErrors, mutateFactory, mutate, memoizedErrorMap])
