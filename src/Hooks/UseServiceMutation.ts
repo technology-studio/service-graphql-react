@@ -7,7 +7,6 @@
 import type { DependencyList } from 'react'
 import {
   useCallback,
-  useContext,
   useMemo,
 } from 'react'
 import type {
@@ -28,7 +27,7 @@ import type {
 import {
   useMutation,
 } from '@apollo/client'
-import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
+import { reportError } from '@txo-peer-dep/error-handler'
 import { operationPromiseProcessor } from '@txo/service-graphql'
 
 import { serviceContext } from '../Api/ContextHelper'
@@ -87,9 +86,6 @@ export const useServiceMutation = <
     DATA,
     ATTRIBUTES
   >(mutationDocument, mutationOptions)
-  const {
-    reportServiceOperationError,
-  } = useContext(ErrorHandlerContext)
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const memoizedOptions = useMemoObject(mutationOptions!)
   const wrappedCall = useCallback(async (
@@ -119,10 +115,10 @@ export const useServiceMutation = <
             onFieldErrors,
           )
         }
-        reportServiceOperationError(serviceOperationError)
+        reportError(serviceOperationError)
         throw serviceOperationError
       })
-  }, [mutationDocument, memoizedOptions, memoizedDefaultOnFieldErrors, mutateFactory, mutate, memoizedErrorMap, reportServiceOperationError])
+  }, [mutationDocument, memoizedOptions, memoizedDefaultOnFieldErrors, mutateFactory, mutate, memoizedErrorMap])
 
   const memoizedMutation = useMemoObject<Typify<MutationResult<DATA>>>(mutation)
 

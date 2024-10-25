@@ -38,7 +38,7 @@ import { configManager } from '@txo-peer-dep/service-graphql'
 import {
   useMemoObject,
 } from '@txo/hooks-react'
-import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
+import { reportError } from '@txo-peer-dep/error-handler'
 import type { Typify } from '@txo/types'
 
 import { serviceContext } from '../Api/ContextHelper'
@@ -97,9 +97,6 @@ export const useServiceQuery = <
   })
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
   const reportedOperationErrorListRef = useRef<(ServiceOperationError)[]>([])
-  const {
-    reportServiceOperationError,
-  } = useContext(ErrorHandlerContext)
   const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
@@ -131,10 +128,10 @@ export const useServiceQuery = <
     if ((exception != null) && (reportedOperationErrorListRef.current.find(shownException => (
       isServiceErrorListEqual(shownException.serviceErrorList, exception.serviceErrorList)
     )) == null)) {
-      reportServiceOperationError(exception)
+      reportError(exception)
       reportedOperationErrorListRef.current.push(exception)
     }
-  }, [context, exception, memoizedVariables, queryDocument, reportServiceOperationError])
+  }, [context, exception, memoizedVariables, queryDocument])
 
   useEffect(() => {
     reportedOperationErrorListRef.current = []
@@ -161,14 +158,14 @@ export const useServiceQuery = <
             operationName,
             context,
           })
-          reportServiceOperationError(exception)
+          reportError(exception)
           throw error
         })
         .finally(() => {
           setFetchMoreFetching(false)
         })
     )
-  }, [context, memoizedQuery, queryDocument, reportServiceOperationError])
+  }, [context, memoizedQuery, queryDocument])
 
   return useMemo(() => ({
     query: memoizedQuery,
