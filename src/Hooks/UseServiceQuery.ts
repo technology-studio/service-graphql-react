@@ -7,6 +7,7 @@
 import {
   useCallback,
   useContext,
+  useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -31,7 +32,7 @@ import type {
   ServiceProp,
 } from '@txo/service-prop'
 import {
-  ServiceErrorException,
+  ServiceOperationError,
 } from '@txo/service-prop'
 import { configManager } from '@txo-peer-dep/service-graphql'
 import {
@@ -79,10 +80,10 @@ export const useServiceQuery = <
   DATA,
   CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>,
   DATA_PATH extends string
->(
-    queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
-    options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
-  ): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
+> (
+  queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
+  options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
+): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
   const {
     dataPath,
     options: _queryOptions,
@@ -95,10 +96,9 @@ export const useServiceQuery = <
     skip: isSkipped,
   })
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
-  const shownExceptionListRef = useRef<(ServiceErrorException)[]>([])
+  const reportedOperationErrorListRef = useRef<(ServiceOperationError)[]>([])
   const {
-    addServiceErrorException,
-    removeServiceErrorException,
+    reportServiceOperationError,
   } = useContext(ErrorHandlerContext)
   const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
@@ -118,32 +118,35 @@ export const useServiceQuery = <
         context,
         operationName,
       })
-      const exception = new ServiceErrorException({
+      const exception = new ServiceOperationError({
         serviceErrorList: errorList,
-        serviceName: operationName,
+        operationName,
         context,
       })
       return exception
     }
     return null
-  }, [context, memoizedQuery, queryDocument])
+  }, [context, memoizedQuery.error, queryDocument])
   useLayoutEffect(() => {
-    if ((exception != null) && (shownExceptionListRef.current.find(shownException => (
+    if ((exception != null) && (reportedOperationErrorListRef.current.find(shownException => (
       isServiceErrorListEqual(shownException.serviceErrorList, exception.serviceErrorList)
     )) == null)) {
-      addServiceErrorException(exception)
-      shownExceptionListRef.current.push(exception)
+      reportServiceOperationError(exception)
+      reportedOperationErrorListRef.current.push(exception)
     }
-    return () => {
-      (exception != null) && removeServiceErrorException(context)
-    }
-  }, [addServiceErrorException, context, exception, memoizedVariables, queryDocument, removeServiceErrorException])
+  }, [context, exception, memoizedVariables, queryDocument, reportServiceOperationError])
+
+  useEffect(() => {
+    reportedOperationErrorListRef.current = []
+  }, [memoizedQuery, queryDocument])
 
   const promiselessRefetch = useCallback((...args: Parameters<typeof memoizedQuery.refetch>) => {
+    reportedOperationErrorListRef.current = []
     asyncToCallback(memoizedQuery.refetch(...args))
   }, [memoizedQuery])
 
   const fetchMore: QueryResult<DATA>['fetchMore'] = useCallback(async (...args) => {
+    reportedOperationErrorListRef.current = []
     setFetchMoreFetching(true)
     return (
       await memoizedQuery.fetchMore(...args)
@@ -153,19 +156,19 @@ export const useServiceQuery = <
             context,
             operationName,
           })
-          const exception = new ServiceErrorException({
+          const exception = new ServiceOperationError({
             serviceErrorList: errorList,
-            serviceName: operationName,
+            operationName,
             context,
           })
-          addServiceErrorException(exception)
+          reportServiceOperationError(exception)
           throw error
         })
         .finally(() => {
           setFetchMoreFetching(false)
         })
     )
-  }, [addServiceErrorException, context, memoizedQuery, queryDocument, setFetchMoreFetching])
+  }, [context, memoizedQuery, queryDocument, reportServiceOperationError])
 
   return useMemo(() => ({
     query: memoizedQuery,
