@@ -27,7 +27,6 @@ import get from 'lodash.get'
 import type { Get } from 'type-fest'
 import type {
   CallAttributes,
-  ServiceError,
   ServiceProp,
 } from '@txo/service-prop'
 import {
@@ -61,16 +60,6 @@ export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED
 type QueryOptions<DATA, ATTRIBUTES extends OperationVariables, DATA_PATH extends string> = {
   options?: QueryHookOptions<DATA, ATTRIBUTES>,
   dataPath: DATA_PATH,
-}
-
-const isServiceErrorListEqual = (a: ServiceError[], b: ServiceError[]): boolean => {
-  if (a.length !== b.length) {
-    return false
-  }
-  if (a.every((error, index) => (b[index].key === error.key) && (b[index].message === error.message))) {
-    return true
-  }
-  return false
 }
 
 // TODO: find a better way to parse type of dataPath (from attribute)
@@ -128,9 +117,7 @@ export const useServiceQuery = <
     return null
   }, [context, memoizedQuery.error, queryDocument])
   useLayoutEffect(() => {
-    if ((exception != null) && (reportedOperationErrorListRef.current.find(shownException => (
-      isServiceErrorListEqual(shownException.serviceErrorList, exception.serviceErrorList)
-    )) == null)) {
+    if ((exception != null) && (reportedOperationErrorListRef.current.includes(exception))) {
       reportError(exception)
       reportedOperationErrorListRef.current.push(exception)
     }
