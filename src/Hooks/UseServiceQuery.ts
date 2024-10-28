@@ -117,7 +117,7 @@ export const useServiceQuery = <
     return null
   }, [context, memoizedQuery.error, queryDocument])
   useLayoutEffect(() => {
-    if ((exception != null) && (reportedOperationErrorListRef.current.includes(exception))) {
+    if ((exception != null) && !reportedOperationErrorListRef.current.includes(exception)) {
       reportError(exception)
       reportedOperationErrorListRef.current.push(exception)
     }
