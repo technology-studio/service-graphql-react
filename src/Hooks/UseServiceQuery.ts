@@ -7,7 +7,6 @@
 import {
   useCallback,
   useContext,
-  useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -100,6 +99,10 @@ export const useServiceQuery = <
   const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
+  useMemo(() => {
+    reportedOperationErrorListRef.current = []
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [memoizedQuery, queryDocument])
   const recentData = useRef(memoizedQuery.data)
   if (!isSkipped) {
     recentData.current = memoizedQuery.data
@@ -132,10 +135,6 @@ export const useServiceQuery = <
       reportedOperationErrorListRef.current.push(exception)
     }
   }, [context, exception, memoizedVariables, queryDocument])
-
-  useEffect(() => {
-    reportedOperationErrorListRef.current = []
-  }, [memoizedQuery, queryDocument])
 
   const promiselessRefetch = useCallback((...args: Parameters<typeof memoizedQuery.refetch>) => {
     reportedOperationErrorListRef.current = []
