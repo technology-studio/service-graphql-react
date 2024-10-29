@@ -11,6 +11,8 @@ const { defaults } = require('jest-config');
 
 module.exports = {
   preset: 'ts-jest',
+  cache: true,
+  cacheDirectory: '<rootDir>/node_modules/.cache/jest',
   testEnvironment: 'node',
   testMatch: [
     '<rootDir>/__tests__/Tests/**/?(*.)(spec|test).ts'

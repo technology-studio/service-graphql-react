@@ -22,7 +22,6 @@
     "build": "yarn build:clean && yarn build:lib",
     "compare-boilerplate-version": "./scripts/compare-boilerplate-version.sh",
     "coverage": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
-    "git-hook": "yarn -s lint-staged",
     "lint:ci": "yarn lint",
     "lint:fix": "eslint . --fix",
     "lint": "eslint --max-warnings 0 .",
