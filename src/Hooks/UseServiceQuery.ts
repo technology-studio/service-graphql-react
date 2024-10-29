@@ -144,8 +144,7 @@ export const useServiceQuery = <
             operationName,
             context,
           })
-          reportError(exception)
-          throw error
+          throw exception
         })
         .finally(() => {
           setFetchMoreFetching(false)
