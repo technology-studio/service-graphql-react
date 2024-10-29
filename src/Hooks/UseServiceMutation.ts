@@ -40,7 +40,7 @@ const calculateContext = (mutation: DocumentNode, variables?: Record<string, unk
 )
 
 export type MutationServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
-  Omit<ServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES, FetchResult<DATA>>, 'clear' | 'options' | 'clearException' | 'exception'>
+  Omit<ServiceProp<ATTRIBUTES, DATA, CALL_ATTRIBUTES, FetchResult<DATA>>, 'options' | 'error'>
   & {
     mutation: MutationResult<DATA>,
   }

@@ -49,7 +49,7 @@ const calculateContext = (query: DocumentNode, variables: Record<string, unknown
 )
 
 export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED_DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
-  Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'clear' | 'options' | 'clearException'>
+  Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'options'>
   & {
     query: QueryResult<DATA, ATTRIBUTES>,
     promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
@@ -100,28 +100,28 @@ export const useServiceQuery = <
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
   ), [queryDocument, memoizedVariables])
-  const exception = useMemo(() => {
+  const error = useMemo(() => {
     const operationName = getName(queryDocument)
     if (memoizedQuery.error != null) {
-      const errorList = configManager.config.errorResponseTranslator(memoizedQuery.error, {
+      const serviceErrorList = configManager.config.errorResponseTranslator(memoizedQuery.error, {
         context,
         operationName,
       })
-      const exception = new ServiceOperationError({
-        serviceErrorList: errorList,
+      const serviceOperationError = new ServiceOperationError({
+        serviceErrorList,
         operationName,
         context,
       })
-      return exception
+      return serviceOperationError
     }
     return null
   }, [context, memoizedQuery.error, queryDocument])
   useLayoutEffect(() => {
-    if ((exception != null) && !reportedOperationErrorListRef.current.includes(exception)) {
-      reportError(exception)
-      reportedOperationErrorListRef.current.push(exception)
+    if ((error != null) && !reportedOperationErrorListRef.current.includes(error)) {
+      reportError(error)
+      reportedOperationErrorListRef.current.push(error)
     }
-  }, [context, exception, memoizedVariables, queryDocument])
+  }, [context, error, memoizedVariables, queryDocument])
 
   const promiselessRefetch = useCallback((...args: Parameters<typeof memoizedQuery.refetch>) => {
     reportedOperationErrorListRef.current = []
@@ -139,12 +139,12 @@ export const useServiceQuery = <
             context,
             operationName,
           })
-          const exception = new ServiceOperationError({
+          const serviceOperationError = new ServiceOperationError({
             serviceErrorList: errorList,
             operationName,
             context,
           })
-          throw exception
+          throw serviceOperationError
         })
         .finally(() => {
           setFetchMoreFetching(false)
@@ -160,6 +160,6 @@ export const useServiceQuery = <
     fetchMoreFetching,
     promiselessRefetch,
     fetchMore,
-    exception,
-  }), [memoizedQuery, data, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, exception])
+    error,
+  }), [memoizedQuery, data, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, error])
 }
