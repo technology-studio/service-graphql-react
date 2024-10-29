@@ -16,24 +16,24 @@
   "license": "UNLICENSED",
   "private": false,
   "scripts": {
-    "build": "yarn build:clean && yarn build:lib",
     "build:clean": "yarn rimraf lib",
     "build:lib": "yarn tsc",
     "build:watch": "yarn tsc --watch",
-    "test": "jest",
-    "test:watch": "concurrently \"yarn build:watch\" \"yarn test --watch\"",
-    "coverage": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
+    "build": "yarn build:clean && yarn build:lib",
     "compare-boilerplate-version": "./scripts/compare-boilerplate-version.sh",
-    "lint": "eslint --max-warnings 0 .",
-    "fixcode": "eslint . --fix",
+    "coverage": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
     "git-hook": "yarn -s lint-staged",
+    "lint:ci": "yarn lint",
+    "lint:fix": "eslint . --fix",
+    "lint": "eslint --max-warnings 0 .",
     "prepare": "husky && yarn build",
     "print-txo-packages": "yarn list 2> /dev/null|grep @txo|sed 's/.*\\(@txo[^@]*\\)@^*\\([^ ]*\\).*/\\1@\\2/g'|sort|uniq",
     "sanity": "yarn lint:ci && yarn build && tsc --noEmit && yarn test --coverage && yarn compare-boilerplate-version && echo 'success'",
     "semantic-release": "semantic-release",
-    "update-boilerplate-version": "./scripts/update-boilerplate-version.sh",
-    "lint:ci": "yarn lint",
-    "type-check": "tsc --noEmit"
+    "test:watch": "concurrently \"yarn build:watch\" \"yarn test --watch\"",
+    "test": "jest",
+    "type-check": "tsc --noEmit",
+    "update-boilerplate-version": "./scripts/update-boilerplate-version.sh"
   },
   "engines": {
     "node": ">=18.0.0"
