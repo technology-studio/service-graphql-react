@@ -1437,16 +1437,16 @@
     semantic-release "^23.0.8"
     semantic-release-slack-bot "^4.0.2"
 
-"@txo/service-graphql@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-5.0.0.tgz#5995fa28aae290b5c6f75296b00bc2cddb4884f1"
-  integrity sha512-qbs5GZdwfdfCkK15pMu2c4YMwBUoEzGE+qUscwIpZJVNSYzddpM2SiFrUSvWiZwouVu6rtlWNgDuO78RboeLHg==
+"@txo/service-graphql@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-5.0.2.tgz#a7c0933e7733735158a9f39671395837f4aab838"
+  integrity sha512-A3Eab1QNCUd2qcOSUWEu+fSU0xTaojRg2GdvN6ao6SdEd8PdaMQ2rEK2CmcMCLTo6vT5khZxTZL0ymffIuepiA==
   dependencies:
     "@txo/log" "^2.0.16"
-    "@txo/service-prop" "^3.0.0"
+    "@txo/service-prop" "^3.0.2"
     lodash.get "^4.4.2"
 
-"@txo/service-prop@^3.0.0", "@txo/service-prop@^3.0.2":
+"@txo/service-prop@^3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-3.0.2.tgz#5f64a473108cd23e92ce3367cc6a8723a875680a"
   integrity sha512-CgXFpL7h85vMXWZPKwGsY6zey78/ZOyjpN/SiD52r1S8gZt/TzvfBOrSXQ8yk8RxvxwX4hPtBe2UwJHp9sw8bQ==
