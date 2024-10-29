@@ -1,3 +1,18 @@
+## [3.0.0](https://github.com/technology-studio/service-graphql-react/compare/v2.6.32...v3.0.0) (2024-10-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* - Renamed exception to the error on useServiceQuery
+- Requires packages:
+  - @txo/service-prop@^3.0.0
+  - @txo-peer-dep/service-error-handler-react@^2.0.0
+  - @txo/service-error-handler-react@^2.0.0
+
+### Bug fixes
+
+* use `ServiceOperationError` and remove context ([#839](https://github.com/technology-studio/service-graphql-react/issues/839)) ([256a8c0](https://github.com/technology-studio/service-graphql-react/commit/256a8c04a30148906a2b785e0847c0a667a14c92))
+
 ## [2.6.32](https://github.com/technology-studio/service-graphql-react/compare/v2.6.31...v2.6.32) (2024-10-29)
 
 
