@@ -27,17 +27,16 @@ import get from 'lodash.get'
 import type { Get } from 'type-fest'
 import type {
   CallAttributes,
-  ServiceError,
   ServiceProp,
 } from '@txo/service-prop'
 import {
-  ServiceErrorException,
+  ServiceOperationError,
 } from '@txo/service-prop'
 import { configManager } from '@txo-peer-dep/service-graphql'
 import {
   useMemoObject,
 } from '@txo/hooks-react'
-import { ErrorHandlerContext } from '@txo-peer-dep/service-error-handler-react'
+import { reportError } from '@txo-peer-dep/error-handler'
 import type { Typify } from '@txo/types'
 
 import { serviceContext } from '../Api/ContextHelper'
@@ -50,7 +49,7 @@ const calculateContext = (query: DocumentNode, variables: Record<string, unknown
 )
 
 export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED_DATA, CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>> =
-  Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'clear' | 'options' | 'clearException'>
+  Omit<ServiceProp<ATTRIBUTES, MAPPED_DATA, CALL_ATTRIBUTES>, 'call' | 'options'>
   & {
     query: QueryResult<DATA, ATTRIBUTES>,
     promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
@@ -63,26 +62,16 @@ type QueryOptions<DATA, ATTRIBUTES extends OperationVariables, DATA_PATH extends
   dataPath: DATA_PATH,
 }
 
-const isServiceErrorListEqual = (a: ServiceError[], b: ServiceError[]): boolean => {
-  if (a.length !== b.length) {
-    return false
-  }
-  if (a.every((error, index) => (b[index].key === error.key) && (b[index].message === error.message))) {
-    return true
-  }
-  return false
-}
-
 // TODO: find a better way to parse type of dataPath (from attribute)
 export const useServiceQuery = <
   ATTRIBUTES extends Record<string, unknown>,
   DATA,
   CALL_ATTRIBUTES extends CallAttributes<ATTRIBUTES>,
   DATA_PATH extends string
->(
-    queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
-    options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
-  ): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
+> (
+  queryDocument: TypedDocumentNode<DATA, ATTRIBUTES>,
+  options: QueryOptions<DATA, ATTRIBUTES, DATA_PATH>,
+): QueryServiceProp<ATTRIBUTES, DATA, Get<DATA, DATA_PATH>, CALL_ATTRIBUTES> => {
   const {
     dataPath,
     options: _queryOptions,
@@ -95,14 +84,14 @@ export const useServiceQuery = <
     skip: isSkipped,
   })
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
-  const shownExceptionListRef = useRef<(ServiceErrorException)[]>([])
-  const {
-    addServiceErrorException,
-    removeServiceErrorException,
-  } = useContext(ErrorHandlerContext)
+  const reportedOperationErrorListRef = useRef<(ServiceOperationError)[]>([])
   const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
+  useMemo(() => {
+    reportedOperationErrorListRef.current = []
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [memoizedQuery, queryDocument])
   const recentData = useRef(memoizedQuery.data)
   if (!isSkipped) {
     recentData.current = memoizedQuery.data
@@ -111,39 +100,36 @@ export const useServiceQuery = <
   const context = useMemo(() => (
     calculateContext(queryDocument, memoizedVariables)
   ), [queryDocument, memoizedVariables])
-  const exception = useMemo(() => {
+  const error = useMemo(() => {
     const operationName = getName(queryDocument)
     if (memoizedQuery.error != null) {
-      const errorList = configManager.config.errorResponseTranslator(memoizedQuery.error, {
+      const serviceErrorList = configManager.config.errorResponseTranslator(memoizedQuery.error, {
         context,
         operationName,
       })
-      const exception = new ServiceErrorException({
-        serviceErrorList: errorList,
-        serviceName: operationName,
+      const serviceOperationError = new ServiceOperationError({
+        serviceErrorList,
+        operationName,
         context,
       })
-      return exception
+      return serviceOperationError
     }
     return null
-  }, [context, memoizedQuery, queryDocument])
+  }, [context, memoizedQuery.error, queryDocument])
   useLayoutEffect(() => {
-    if ((exception != null) && (shownExceptionListRef.current.find(shownException => (
-      isServiceErrorListEqual(shownException.serviceErrorList, exception.serviceErrorList)
-    )) == null)) {
-      addServiceErrorException(exception)
-      shownExceptionListRef.current.push(exception)
+    if ((error != null) && !reportedOperationErrorListRef.current.includes(error)) {
+      reportError(error)
+      reportedOperationErrorListRef.current.push(error)
     }
-    return () => {
-      (exception != null) && removeServiceErrorException(context)
-    }
-  }, [addServiceErrorException, context, exception, memoizedVariables, queryDocument, removeServiceErrorException])
+  }, [context, error, memoizedVariables, queryDocument])
 
   const promiselessRefetch = useCallback((...args: Parameters<typeof memoizedQuery.refetch>) => {
+    reportedOperationErrorListRef.current = []
     asyncToCallback(memoizedQuery.refetch(...args))
   }, [memoizedQuery])
 
   const fetchMore: QueryResult<DATA>['fetchMore'] = useCallback(async (...args) => {
+    reportedOperationErrorListRef.current = []
     setFetchMoreFetching(true)
     return (
       await memoizedQuery.fetchMore(...args)
@@ -153,19 +139,18 @@ export const useServiceQuery = <
             context,
             operationName,
           })
-          const exception = new ServiceErrorException({
+          const serviceOperationError = new ServiceOperationError({
             serviceErrorList: errorList,
-            serviceName: operationName,
+            operationName,
             context,
           })
-          addServiceErrorException(exception)
-          throw error
+          throw serviceOperationError
         })
         .finally(() => {
           setFetchMoreFetching(false)
         })
     )
-  }, [addServiceErrorException, context, memoizedQuery, queryDocument, setFetchMoreFetching])
+  }, [context, memoizedQuery, queryDocument])
 
   return useMemo(() => ({
     query: memoizedQuery,
@@ -175,6 +160,6 @@ export const useServiceQuery = <
     fetchMoreFetching,
     promiselessRefetch,
     fetchMore,
-    exception,
-  }), [memoizedQuery, data, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, exception])
+    error,
+  }), [memoizedQuery, data, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, error])
 }

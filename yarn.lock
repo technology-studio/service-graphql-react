@@ -1366,20 +1366,19 @@
     "@tufjs/canonical-json" "2.0.0"
     minimatch "^9.0.3"
 
+"@txo-peer-dep/error-handler@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/error-handler/-/error-handler-3.0.0.tgz#2934a962557ccb43e8a25d5c2cb0f46fbc602847"
+  integrity sha512-m+FGNtkn5J0ZsTLJ32RMej+VgxVJWaWvROhyPrhfr4gK4rHimMG4LYaIu2lgFCYm+JPl2KG+VwlRdilZzEPgKA==
+  dependencies:
+    "@txo/log" "^2.0.16"
+
 "@txo-peer-dep/log@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@txo-peer-dep/log/-/log-4.0.4.tgz#73611601423b0ec5c134964419bd642a61bd1b56"
   integrity sha512-VkesFLiEv9bbymAi+1fS6U5Z4HTzqjl1aRU7BO33No5R3EglHgxlpr9hpMaIifylKgtRqoqwL78Ow9Hz7ko98w==
   dependencies:
     "@txo/config-manager" "^3.2.0"
-
-"@txo-peer-dep/service-error-handler-react@^1.2.29":
-  version "1.2.29"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/service-error-handler-react/-/service-error-handler-react-1.2.29.tgz#406e2323baa1c57b64c4d919764d36e00b51a2c3"
-  integrity sha512-XXZdJp3Y0sNVdY5lgK98V1nyyN3KRjS0LFuwY923Ri3ixWO0nEb8k7ycg1Oc/xlNaN1JXPbIUa3ttma28NEdGw==
-  dependencies:
-    "@txo/log" "^2.0.16"
-    "@txo/service-prop" "^2.2.18"
 
 "@txo-peer-dep/service-graphql@^3.3.3":
   version "3.3.3"
@@ -1438,21 +1437,21 @@
     semantic-release "^23.0.8"
     semantic-release-slack-bot "^4.0.2"
 
-"@txo/service-graphql@^4.4.6":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-4.4.6.tgz#babb31c0a25256e0a8904007ba8c7d28fb4f1fca"
-  integrity sha512-QdXQ9TxRPTfZ3D9Mr4XWiVCAbPy1+diwRsWEcoAYt4GJWRv+qqZkLQFDLF7KZL0lZJlOmbFEycEq6zi/ul9uCA==
+"@txo/service-graphql@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@txo/service-graphql/-/service-graphql-5.0.0.tgz#5995fa28aae290b5c6f75296b00bc2cddb4884f1"
+  integrity sha512-qbs5GZdwfdfCkK15pMu2c4YMwBUoEzGE+qUscwIpZJVNSYzddpM2SiFrUSvWiZwouVu6rtlWNgDuO78RboeLHg==
   dependencies:
     "@txo/log" "^2.0.16"
-    "@txo/service-prop" "^2.2.17"
+    "@txo/service-prop" "^3.0.0"
     lodash.get "^4.4.2"
 
-"@txo/service-prop@^2.2.17", "@txo/service-prop@^2.2.18", "@txo/service-prop@^2.2.20":
-  version "2.2.20"
-  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-2.2.20.tgz#a7d3f5e237e19f80e269c4f5bd92b9d08a9b6d4f"
-  integrity sha512-LjTFX/iBiFvG2yuJm/Kk3Qsp6DNWqVNPeMfaaTe80sbFS/a4n5uBhrRVG4/oqe9NJg4O+8HllNKcqJYxwolAPw==
+"@txo/service-prop@^3.0.0", "@txo/service-prop@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-3.0.2.tgz#5f64a473108cd23e92ce3367cc6a8723a875680a"
+  integrity sha512-CgXFpL7h85vMXWZPKwGsY6zey78/ZOyjpN/SiD52r1S8gZt/TzvfBOrSXQ8yk8RxvxwX4hPtBe2UwJHp9sw8bQ==
   dependencies:
-    "@txo/functional" "^4.6.19"
+    "@txo/types" "^1.7.0"
 
 "@txo/tsconfig@^1.1.1":
   version "1.1.1"

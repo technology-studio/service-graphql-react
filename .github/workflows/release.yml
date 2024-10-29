@@ -3,13 +3,9 @@ on:
   push:
     branches:
       - main
-      - next
-      - next-major
-      - alpha
-      - beta
 
 jobs:
   release:
-    name: '/'
+    name: 'Release'
     uses: technology-studio/github-workflows/.github/workflows/_release.yml@main
     secrets: inherit
