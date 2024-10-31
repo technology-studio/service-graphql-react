@@ -1453,6 +1453,13 @@
   dependencies:
     "@txo/types" "^1.7.0"
 
+"@txo/service-prop@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@txo/service-prop/-/service-prop-3.0.3.tgz#f8518ec014131358e9e531eba6812f3bedc79f83"
+  integrity sha512-Rt9GVlVXrMFFdK+x36rF86p5IUid49ez4s+aaow4CtMz6KF+j2mEeNvbhqa60Q8rFrwQVbprveXGKWH4EQGnOg==
+  dependencies:
+    "@txo/types" "^1.7.0"
+
 "@txo/tsconfig@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@txo/tsconfig/-/tsconfig-1.1.1.tgz#0e746a34c5a5092459235e15588fb33e94cbf067"
