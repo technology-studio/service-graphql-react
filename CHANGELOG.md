@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/technology-studio/service-graphql-react/compare/v3.0.1...v3.0.2) (2024-10-31)
+
+
+### Bug fixes
+
+* rename `fetching` to `isFetching` ([#844](https://github.com/technology-studio/service-graphql-react/issues/844)) ([09336cd](https://github.com/technology-studio/service-graphql-react/commit/09336cdb361c416e22949255a913c575a06a6e9d))
+
 ## [3.0.1](https://github.com/technology-studio/service-graphql-react/compare/v3.0.0...v3.0.1) (2024-10-30)
 
 
