@@ -54,7 +54,7 @@ export type QueryServiceProp<ATTRIBUTES extends OperationVariables, DATA, MAPPED
     query: QueryResult<DATA, ATTRIBUTES>,
     promiselessRefetch: (variables?: Partial<ATTRIBUTES>) => void,
     fetchMore: QueryResult<DATA, ATTRIBUTES>['fetchMore'],
-    fetchMoreFetching: boolean,
+    fetchMoreIsFetching: boolean,
   }
 
 type QueryOptions<DATA, ATTRIBUTES extends OperationVariables, DATA_PATH extends string> = {
@@ -85,7 +85,7 @@ export const useServiceQuery = <
   })
   const query: QueryResult<DATA, ATTRIBUTES> = useQuery<DATA, ATTRIBUTES>(queryDocument, queryOptions)
   const reportedOperationErrorListRef = useRef<(ServiceOperationError)[]>([])
-  const [fetchMoreFetching, setFetchMoreFetching] = useState(false)
+  const [fetchMoreIsFetching, setFetchMoreFetching] = useState(false)
   const memoizedVariables = useMemoObject(queryOptions?.variables)
   const memoizedQuery = useMemoObject<Typify<QueryResult<DATA, ATTRIBUTES>>>(query)
   useMemo(() => {
@@ -156,10 +156,10 @@ export const useServiceQuery = <
     query: memoizedQuery,
     // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     data: get(data, dataPath) as Get<DATA, DATA_PATH> | null,
-    fetching: memoizedQuery.loading,
-    fetchMoreFetching,
+    isFetching: memoizedQuery.loading,
+    fetchMoreIsFetching,
     promiselessRefetch,
     fetchMore,
     error,
-  }), [memoizedQuery, data, dataPath, fetchMoreFetching, promiselessRefetch, fetchMore, error])
+  }), [memoizedQuery, data, dataPath, fetchMoreIsFetching, promiselessRefetch, fetchMore, error])
 }

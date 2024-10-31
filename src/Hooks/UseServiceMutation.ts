@@ -127,7 +127,7 @@ export const useServiceMutation = <
   return useMemo(() => ({
     mutation: memoizedMutation,
     data: memoizedMutation.data ?? null,
-    fetching: memoizedMutation.loading,
+    isFetching: memoizedMutation.loading,
     call: wrappedCall,
   }), [memoizedMutation, wrappedCall])
 }
