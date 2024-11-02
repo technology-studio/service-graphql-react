@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@txo/hooks-react": "^2.3.21",
-    "@txo/service-graphql": "^5.0.2",
+    "@txo/service-graphql": "^5.0.3",
     "@txo/service-prop": "^3.0.3",
     "@txo/types": "^1.7.0",
     "lodash.get": "^4.4.2",
