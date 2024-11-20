@@ -3,5 +3,5 @@
     "lib": ["esnext", "dom"],
     "jsx": "react"
   },
-  "extends": "@txo/tsconfig"
+  "extends": "@txo/tsconfig-cjs"
 }
