@@ -1,3 +1,16 @@
+## [3.0.7](https://github.com/technology-studio/service-graphql-react/compare/v3.0.6...v3.0.7) (2024-11-23)
+
+
+### CI
+
+* add synchronize to PR workflow ([#857](https://github.com/technology-studio/service-graphql-react/issues/857)) ([89c8032](https://github.com/technology-studio/service-graphql-react/commit/89c8032e8e2d3c280855f9571d2cde97ce14d194))
+* update pr and release workflows ([#852](https://github.com/technology-studio/service-graphql-react/issues/852)) ([0d94f2b](https://github.com/technology-studio/service-graphql-react/commit/0d94f2b5221e88660a9465152eb96aba1c7f46aa))
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^4.27.1 ([#861](https://github.com/technology-studio/service-graphql-react/issues/861)) ([50ab6bb](https://github.com/technology-studio/service-graphql-react/commit/50ab6bbacb955a1e5285d8a3f74c200eb7f0aa07))
+
 ## [3.0.6](https://github.com/technology-studio/service-graphql-react/compare/v3.0.5...v3.0.6) (2024-11-15)
 
 
