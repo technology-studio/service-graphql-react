@@ -73,27 +73,27 @@ export const applyErrorMap = (
   const fieldErrors = {}
   const nextServiceErrorList = serviceErrorList
     .reduce<ServiceError[]>(
-    (nextServiceErrorList, serviceError) => {
-      const graphQlError = serviceError.data as GraphQLError
-      const path = [...(graphQlError?.path ?? []), serviceError.key].join('.')
-      const errorMapper = getWithWildcardFallback(normalisedErrorMap, path)
+      (nextServiceErrorList, serviceError) => {
+        const graphQlError = serviceError.data as GraphQLError
+        const path = [...(graphQlError?.path ?? []), graphQlError.extensions.key].join('.')
+        const errorMapper = getWithWildcardFallback(normalisedErrorMap, path)
 
-      if (errorMapper != null) {
-        const nextServiceError = errorMapper({
-          error: serviceError,
-          fieldErrors,
-          path,
-        })
-        if (nextServiceError !== serviceError) {
-          modified = true
+        if (errorMapper != null) {
+          const nextServiceError = errorMapper({
+            error: serviceError,
+            fieldErrors,
+            path,
+          })
+          if (nextServiceError !== serviceError) {
+            modified = true
+          }
+          (nextServiceError != null) && nextServiceErrorList.push(nextServiceError)
+        } else {
+          nextServiceErrorList.push(serviceError)
         }
-        (nextServiceError != null) && nextServiceErrorList.push(nextServiceError)
-      } else {
-        nextServiceErrorList.push(serviceError)
-      }
 
-      return nextServiceErrorList
-    }, [])
+        return nextServiceErrorList
+      }, [])
 
   if ((onFieldErrors != null) && Object.keys(fieldErrors).length > 0) {
     onFieldErrors(fieldErrors)
