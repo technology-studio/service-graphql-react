@@ -1,3 +1,10 @@
+## [3.0.10](https://github.com/technology-studio/service-graphql-react/compare/v3.0.9...v3.0.10) (2024-11-27)
+
+
+### Bug fixes
+
+* use key from extensions of graphQlError ([#864](https://github.com/technology-studio/service-graphql-react/issues/864)) ([9e45e94](https://github.com/technology-studio/service-graphql-react/commit/9e45e949fc8ff700a3d5afbe3081c1000214d00f))
+
 ## [3.0.9](https://github.com/technology-studio/service-graphql-react/compare/v3.0.8...v3.0.9) (2024-11-26)
 
 
