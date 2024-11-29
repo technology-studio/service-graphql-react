@@ -1,3 +1,10 @@
+## [3.0.12](https://github.com/technology-studio/service-graphql-react/compare/v3.0.11...v3.0.12) (2024-11-29)
+
+
+### Bug fixes
+
+* deprecate `VALIDATION_ERROR` ([#866](https://github.com/technology-studio/service-graphql-react/issues/866)) ([4040bfe](https://github.com/technology-studio/service-graphql-react/commit/4040bfe3588c62c7d2c94ef5315db137f379d7a7))
+
 ## [3.0.11](https://github.com/technology-studio/service-graphql-react/compare/v3.0.10...v3.0.11) (2024-11-27)
 
 
