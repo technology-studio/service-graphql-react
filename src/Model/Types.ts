@@ -14,4 +14,5 @@ export type ErrorMapper = ((options: {
 
 export type ErrorMap = { [key: string]: ErrorMap } | ErrorMapper
 
+/** @deprecated - import from `@txo-peer-dep/error-handler` */
 export const VALIDATION_ERROR = 'VALIDATION_ERROR'

@@ -10,13 +10,11 @@ import type {
 import { isObject } from '@txo/functional'
 import set from 'lodash.set'
 import { type GraphQLError } from 'graphql'
+import { VALIDATION_ERROR } from '@txo-peer-dep/error-handler'
 
 import type {
   ErrorMap,
   ErrorMapper,
-} from '../Model/Types'
-import {
-  VALIDATION_ERROR,
 } from '../Model/Types'
 
 const normaliseErrorMap = (errorMap: ErrorMap): ErrorMap => {

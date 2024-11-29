@@ -1376,10 +1376,10 @@
     "@tufjs/canonical-json" "2.0.0"
     minimatch "^9.0.3"
 
-"@txo-peer-dep/error-handler@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@txo-peer-dep/error-handler/-/error-handler-3.0.0.tgz#2934a962557ccb43e8a25d5c2cb0f46fbc602847"
-  integrity sha512-m+FGNtkn5J0ZsTLJ32RMej+VgxVJWaWvROhyPrhfr4gK4rHimMG4LYaIu2lgFCYm+JPl2KG+VwlRdilZzEPgKA==
+"@txo-peer-dep/error-handler@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@txo-peer-dep/error-handler/-/error-handler-3.1.0.tgz#3225c7c425ffe1a845208998b2bdeb201e50bf84"
+  integrity sha512-LjQZTxFz/JVORg1Aa01hL/AGxeep4+G4tupOh0ANKqnI+aLR03COX9MsCFlZAg4OInNELqYrHNCO+KFj4Uvoag==
   dependencies:
     "@txo/log" "^2.0.16"
 
