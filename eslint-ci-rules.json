@@ -1,0 +1,12 @@
+[
+  "@typescript-eslint/no-magic-numbers",
+  "@typescript-eslint/no-import-type-side-effects",
+  "@typescript-eslint/no-unsafe-type-assertion",
+  "@typescript-eslint/no-unnecessary-condition",
+  "@typescript-eslint/no-unnecessary-template-expression",
+  "@stylistic/space-before-function-paren",
+  "eslint-comments/require-description",
+  "@stylistic/arrow-parens",
+  "@typescript-eslint/use-unknown-in-catch-callback-variable",
+  "@typescript-eslint/prefer-destructuring"
+]
