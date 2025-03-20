@@ -47,13 +47,13 @@
     "type-fest": "^4.37.0"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.13.4",
+    "@apollo/client": "^3.13.5",
     "@txo-peer-dep/error-handler": "^3.1.1",
     "@txo-peer-dep/service-graphql": "^3.3.3",
     "graphql": "^16.10.0"
   },
   "devDependencies": {
-    "@apollo/client": "^3.13.4",
+    "@apollo/client": "^3.13.5",
     "@txo-peer-dep/error-handler": "^3.1.1",
     "@txo-peer-dep/log": "^4.0.4",
     "@txo-peer-dep/service-graphql": "^3.3.3",
