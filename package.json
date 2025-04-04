@@ -1,6 +1,6 @@
 {
   "name": "@txo/service-graphql-react",
-  "version": "3.0.41",
+  "version": "3.0.42",
   "description": "Technology Studio - Service graphql react",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
