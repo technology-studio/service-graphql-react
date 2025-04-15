@@ -1,3 +1,10 @@
+## [3.0.45](https://github.com/technology-studio/service-graphql-react/compare/v3.0.44...v3.0.45) (2025-04-15)
+
+
+### Bug fixes
+
+* **deps:** update dependency type-fest to ^4.40.0 ([#931](https://github.com/technology-studio/service-graphql-react/issues/931)) ([fff65d0](https://github.com/technology-studio/service-graphql-react/commit/fff65d019f45e2f9e2dad88cad33cb8a19e2f5fd))
+
 ## [3.0.44](https://github.com/technology-studio/service-graphql-react/compare/v3.0.43...v3.0.44) (2025-04-10)
 
 
