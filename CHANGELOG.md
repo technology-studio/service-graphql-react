@@ -1,3 +1,15 @@
+## [3.0.52](https://github.com/technology-studio/service-graphql-react/compare/v3.0.51...v3.0.52) (2025-11-04)
+
+
+### CI
+
+* add pr.yml permissions ([#965](https://github.com/technology-studio/service-graphql-react/issues/965)) ([6134b21](https://github.com/technology-studio/service-graphql-react/commit/6134b215704a2414f871597065625f5e132955a1))
+
+
+### Bug fixes
+
+* **deps:** update dependency graphql to ^16.12.0 ([#978](https://github.com/technology-studio/service-graphql-react/issues/978)) ([c1c87fc](https://github.com/technology-studio/service-graphql-react/commit/c1c87fc66450448b9a8c11871b8bc6ce364a255d))
+
 ## [3.0.51](https://github.com/technology-studio/service-graphql-react/compare/v3.0.50...v3.0.51) (2025-08-21)
 
 
