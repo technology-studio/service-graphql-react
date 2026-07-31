@@ -11,5 +11,5 @@ on:
 jobs:
   unit:
     name: 'Unit test'
-    uses: technology-studio/github-workflows/.github/workflows/_unit-test.yml@main
+    uses: technology-studio/github-workflows/.github/workflows/_unit-test.yml@331e6f866da04053d27ba5890d1b9c60bc8ed2fa # main
     secrets: inherit
